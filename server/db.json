@@ -1,0 +1,34 @@
+{
+  "beers": [
+    {
+      "id": "1",
+      "name": "KBS",
+      "brewery": "Founders Brewing Co.",
+      "rating": 96
+    },
+    {
+      "id": "2",
+      "name": "Budweiser",
+      "brewery": "Budweiser ® Beer",
+      "rating": 21
+    },
+    {
+      "id": "3",
+      "name": "Green",
+      "brewery": "Tree House Brewing Company",
+      "rating": 98
+    },
+    {
+      "id": "4",
+      "name": "Double Dry Hopped Fort Point Pale Ale",
+      "brewery": "Trillium Brewing Company",
+      "rating": 90
+    },
+    {
+      "id": "5",
+      "name": "Pliny The Younger",
+      "brewery": "Russian River Brewing Company",
+      "rating": 94
+    }
+  ]
+}

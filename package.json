@@ -10,7 +10,7 @@
     "e2e": "ng e2e",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "client": "ng serve --port 4300",
-    "server": "json-server server/db.json"
+    "server": "json-server server/db.json --port 4301"
   },
   "private": true,
   "dependencies": {

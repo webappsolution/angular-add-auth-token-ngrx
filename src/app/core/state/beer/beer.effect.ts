@@ -19,12 +19,12 @@ export class BeerEffect {
      * Load up some yummy brews.
      */
     @Effect()
-    search$: Observable<Action> = this.actions$.pipe(
+    getBeers$: Observable<Action> = this.actions$.pipe(
         ofType<GetBeers>(BeerActionTypes.GetBeers),
         exhaustMap(() =>
             this.beerService.getAll().pipe(
                 map((data: Beer[]) => new GetBeersSuccess(data)),
-                catchError((err: HttpErrorResponse) => of(new GetBeersFault({ message: err.message })))
+                catchError((err: HttpErrorResponse) => of(new GetBeersFault(err.message)))
             )
         )
     );

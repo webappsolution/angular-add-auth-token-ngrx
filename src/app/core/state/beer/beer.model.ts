@@ -10,4 +10,4 @@ export const defaultBeer: Beer = {
     name: "",
     brewery: "",
     rating: 0
-}
+};

@@ -1,11 +1,15 @@
+import { HttpClientModule } from "@angular/common/http";
 import {
     NgModule,
     Optional,
     SkipSelf
 } from "@angular/core";
+import { ServiceModule } from "./service/service.module";
 import { StateModule } from "./state/state.module";
 
 const MODULES = [
+    HttpClientModule,
+    ServiceModule,
     StateModule
 ];
 const PROVIDERS = [];

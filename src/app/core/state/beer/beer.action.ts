@@ -24,7 +24,7 @@ export class GetBeersSuccess implements Action {
 
 export class GetBeersFault implements Action {
     readonly type = BeerActionTypes.GetBeersFault;
-    constructor(public fault: any) { }
+    constructor(public fault: string) { }
 }
 
 export class Select implements Action {

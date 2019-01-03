@@ -2,9 +2,29 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.3.
 
+## Overview
+
+This project demonstrates how to add authentication tokens to all of HTTP requests when the token is stored in an NGRX store.
+
+## Getting Started
+
+```
+npm install
+npm run dev
+```
+
+Navigate to `http://localhost:4300/`. The app will automatically reload if you change any of the source files.
+
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+You can also run the client and back-end servers individually.
+
+* Run `npm run client` for a client dev server. 
+    * `http://localhost:4300/`
+* Run `npm run server` for a backend in-memory JSON database.
+    * `http://localhost:4301/`
+* Run `npm run dev` to start both the client and server concurrently.
+
 
 ## Code scaffolding
 

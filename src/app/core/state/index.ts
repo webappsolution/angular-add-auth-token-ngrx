@@ -1,14 +1,27 @@
 import { ActionReducerMap, createFeatureSelector, createSelector } from "@ngrx/store";
 import { defaultBeer } from "./beer/beer.model";
+import * as fromAuth from "./auth/auth.reducer";
 import * as fromBeer from "./beer/beer.reducer";
 
 export interface AppState {
+    auth: fromAuth.AuthState;
     beer: fromBeer.BeerState;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
+    auth: fromAuth.authReducer,
     beer: fromBeer.beerReducer
 };
+
+// -------------------------------------------------------------------
+// AUTH SELECTORS
+// -------------------------------------------------------------------
+export const selectAuthState = createFeatureSelector<fromAuth.AuthState>("auth");
+
+export const getToken = createSelector(
+    selectAuthState,
+    fromAuth.getToken
+);
 
 // -------------------------------------------------------------------
 // BEER SELECTORS

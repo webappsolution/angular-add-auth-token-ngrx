@@ -4,11 +4,13 @@ import {
     Optional,
     SkipSelf
 } from "@angular/core";
+import { HttpInterceptorModule } from "./http-interceptor/http-interceptor.module";
 import { ServiceModule } from "./service/service.module";
 import { StateModule } from "./state/state.module";
 
 const MODULES = [
     HttpClientModule,
+    HttpInterceptorModule,
     ServiceModule,
     StateModule
 ];

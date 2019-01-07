@@ -22,7 +22,6 @@ export class AddTokenHeaderHttpRequestInterceptor implements HttpInterceptor {
             first(),
             mergeMap((requestWithToken: HttpRequest<any>) => next.handle(requestWithToken))
         );
-        // return next.handle(request);
     }
 
     /**
@@ -42,7 +41,7 @@ export class AddTokenHeaderHttpRequestInterceptor implements HttpInterceptor {
                     });
                     return of(request);
                 } else {
-                    console.warn(`Invalid token!!!`);
+                    console.warn(`Invalid token!!! Cannot use token "${token}".`);
                     return EMPTY;
                 }
             }),

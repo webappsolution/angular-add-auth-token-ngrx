@@ -33,6 +33,7 @@ export class AddTokenHeaderHttpRequestInterceptor implements HttpInterceptor {
         // as a result it'll throw a runtime error.
         return this.store$.pipe(
             select(fromState.getToken),
+            first(),
             mergeMap((token: string) => {
                 if (token) {
                     request = request.clone({
@@ -44,8 +45,7 @@ export class AddTokenHeaderHttpRequestInterceptor implements HttpInterceptor {
                     console.warn(`Invalid token!!! Cannot use token "${token}".`);
                     return EMPTY;
                 }
-            }),
-            first()
+            })
         );
     }
 }

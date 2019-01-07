@@ -40,11 +40,10 @@ export class AddTokenHeaderHttpRequestInterceptor implements HttpInterceptor {
                         headers: request.headers.set("Authorization", `Bearer ${token}`),
                         withCredentials: true
                     });
-                    return of(request);
                 } else {
                     console.warn(`Invalid token!!! Cannot use token "${token}".`);
-                    return EMPTY;
                 }
+                return of(request);
             })
         );
     }

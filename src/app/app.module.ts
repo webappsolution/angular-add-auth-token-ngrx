@@ -15,8 +15,8 @@ const MODULES = [
   BrowserAnimationsModule,
   CoreModule,
   SharedModule,
-  LoginModule,
-  BeerModule
+  // LoginModule,
+  // BeerModule
 ];
 
 const COMPONENTS = [

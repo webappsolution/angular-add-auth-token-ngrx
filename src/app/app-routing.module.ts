@@ -18,8 +18,7 @@ const routes: Routes = [
   //////////////////////////////////////////////////
   {
     path: appRoutePaths.login,
-    // loadChildren: "./auth/login/login.module#LoginModule",
-    component: LoginComponent
+    loadChildren: "./auth/login/login.module#LoginModule",
   },
   // {
   //   path: appRoutePaths.signup,
@@ -32,7 +31,6 @@ const routes: Routes = [
   {
     path: appRoutePaths.beer,
     loadChildren: "./beer/beer.module#BeerModule",
-    // canActivate: [AuthGuard]
   },
 
   //////////////////////////////////////////////////

@@ -49,7 +49,7 @@ export class AuthService {
                 };
             }),
             catchError((fault: HttpErrorResponse) => {
-                console.warn(`loginFault( ${fault.message} )`);
+                console.warn(`loginFault( ${fault.error.message} )`);
                 return throwError(fault);
             })
         );
@@ -77,7 +77,7 @@ export class AuthService {
                 };
             }),
             catchError((fault: HttpErrorResponse) => {
-                console.warn(`registerFault( ${fault.message} )`);
+                console.warn(`registerFault( ${fault.error.message} )`);
                 return throwError(fault);
             })
         );

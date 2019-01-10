@@ -1,0 +1,14 @@
+// define 3 theme color
+// mat-palette accepts $palette-name, main, lighter and darker variants
+$blog-theme-primary: mat-palette($mat-indigo, 700, 300, 900);
+$blog-theme-accent: mat-palette($mat-light-blue);
+$blog-theme-warn: mat-palette($mat-deep-orange, A200);
+
+// create theme (use mat-dark-theme for themes with dark backgrounds)
+$blog-theme: mat-light-theme(
+        $blog-theme-primary,
+        $blog-theme-accent,
+        $blog-theme-warn
+);
+
+@include angular-material-theme($blog-theme);

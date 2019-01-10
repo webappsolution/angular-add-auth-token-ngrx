@@ -5,7 +5,7 @@ const httpStatus = require("http-status");
 const authService = require("./auth.service");
 const util = require("../util");
 
-// Define the list of auth routes
+// Define the list of auth routes and matching handler methods.
 router.post("/login", authenticate);
 router.post("/register", register);
 
@@ -21,7 +21,7 @@ function invalidLoginRequest(res) {
 
 // Handles registration requests that don't contain the required data.
 function invalidRegisterRequest(res) {
-  const message = `Invalid login request. Must contain a valid firstName, lastName, username and password. ${httpStatus["400_MESSAGE"]}`;
+  const message = `Invalid register request. Must contain a valid firstName, lastName, username and password. ${httpStatus["400_MESSAGE"]}`;
   console.log(`invalidRegisterRequest( ${message} )`);
   return util.createErrorResponse(res, httpStatus.BAD_REQUEST, message);
 }

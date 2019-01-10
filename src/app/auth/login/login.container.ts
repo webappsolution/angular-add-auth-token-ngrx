@@ -1,10 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { select, Store } from "@ngrx/store";
 import { Observable } from "rxjs";
-import { appRoutePaths } from "../../app.routes";
 import { LoginCredentials } from "../../core/domain/auth.model";
 import * as AuthActions from "../../core/state/auth/auth.action";
-import * as RouterActions from "../../core/state/router/router.action";
 import * as fromState from "../../core/state/";
 
 @Component({
@@ -54,6 +52,6 @@ export class LoginContainer implements OnInit {
      * Switch to register view.
      */
     public register(event: any) {
-        this.store$.dispatch(new RouterActions.Go({ path: appRoutePaths.register }));
+        this.store$.dispatch(new AuthActions.NavigateToRegister());
     }
 }

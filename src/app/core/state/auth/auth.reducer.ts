@@ -17,6 +17,7 @@ function initAuth(state: AuthState = initialState): AuthState {
     return {
         ...state,
         pending: true,
+        error: "",
     };
 }
 
@@ -38,6 +39,13 @@ function authFailed(state: AuthState = initialState, data: string): AuthState {
     };
 }
 
+function resetAuthError(state: AuthState = initialState): AuthState {
+    return {
+        ...state,
+        error: "",
+    };
+}
+
 export function authReducer(state: AuthState = initialState, action: AuthActions): AuthState {
     switch (action.type) {
 
@@ -52,6 +60,9 @@ export function authReducer(state: AuthState = initialState, action: AuthActions
         case AuthActionTypes.LoginFault:
         case AuthActionTypes.RegisterFault:
             return authFailed(state, action.payload);
+
+        case AuthActionTypes.ResetAuthError:
+            return resetAuthError(state);
 
         default:
             return state;

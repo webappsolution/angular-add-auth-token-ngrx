@@ -35,7 +35,7 @@ export class AuthEffect {
                     new AuthActions.LoginSuccess(data),
                     new RouterActions.Go({ path: appRoutePaths.beer })
                 ]),
-                catchError((err: HttpErrorResponse) => of(new AuthActions.LoginFault(err.message)))
+                catchError((err: HttpErrorResponse) => of(new AuthActions.LoginFault(err.error.message)))
             )
         )
     );
@@ -53,9 +53,37 @@ export class AuthEffect {
                     new AuthActions.RegisterSuccess(data),
                     new RouterActions.Go({ path: appRoutePaths.beer })
                 ]),
-                catchError((err: HttpErrorResponse) => of(new AuthActions.RegisterFault(err.message)))
+                catchError((err: HttpErrorResponse) => of(new AuthActions.RegisterFault(err.error.message)))
             )
         )
+    );
+
+    /**
+     * Routes the user to the login flow.
+     */
+    @Effect()
+    navigateToLogin$: Observable<Action> = this.actions$.pipe(
+        ofType<AuthActions.NavigateToLogin>(AuthActionTypes.NavigateToLogin),
+        mergeMap((action) => {
+            return [
+                new AuthActions.ResetAuthError(),
+                new RouterActions.Go({ path: appRoutePaths.login })
+            ];
+        })
+    );
+
+    /**
+     * Routes the user to the login flow.
+     */
+    @Effect()
+    navigateToRegister$: Observable<Action> = this.actions$.pipe(
+        ofType<AuthActions.NavigateToRegister>(AuthActionTypes.NavigateToRegister),
+        mergeMap((action) => {
+            return [
+                new AuthActions.ResetAuthError(),
+                new RouterActions.Go({ path: appRoutePaths.register })
+            ];
+        })
     );
 
     /**

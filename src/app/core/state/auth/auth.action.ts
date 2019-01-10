@@ -13,6 +13,11 @@ export enum AuthActionTypes {
     Register = "[Auth] Register",
     RegisterSuccess = "[Auth] RegisterSuccess",
     RegisterFault = "[Auth] RegisterFault",
+
+    NavigateToLogin = "[Auth] NavigateToLogin",
+    NavigateToRegister = "[Auth] NavigateToRegister",
+
+    ResetAuthError = "[Auth] ResetAuthError",
 }
 
 export class Login implements Action {
@@ -45,6 +50,21 @@ export class RegisterFault implements Action {
     constructor(public payload: string) { }
 }
 
+export class NavigateToLogin implements Action {
+    readonly type = AuthActionTypes.NavigateToLogin;
+    constructor() { }
+}
+
+export class NavigateToRegister implements Action {
+    readonly type = AuthActionTypes.NavigateToRegister;
+    constructor() { }
+}
+
+export class ResetAuthError implements Action {
+    readonly type = AuthActionTypes.ResetAuthError;
+    constructor() { }
+}
+
 export type AuthActions =
     | Login
     | LoginSuccess
@@ -52,4 +72,7 @@ export type AuthActions =
     | Register
     | RegisterSuccess
     | RegisterFault
+    | NavigateToLogin
+    | NavigateToRegister
+    | ResetAuthError
     ;

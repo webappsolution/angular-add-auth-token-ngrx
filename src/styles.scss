@@ -1,1 +1,14 @@
-@import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
+@import "~@angular/material/theming";
+
+// always include only once per project
+@include mat-core();
+
+// import our custom theme
+@import "assets/scss/blog-theme";
+
+// specify theme class eg: <body class="my-theme"> ... </body>
+.blog-theme {
+
+    // use our theme with angular-material-theme mixin
+    @include angular-material-theme($blog-theme);
+}

@@ -9,7 +9,7 @@ export const initialState: AuthState = {
     token: "",
 };
 
-function loginSuccess(state: AuthState = initialState, data: Auth): AuthState {
+function authenticate(state: AuthState = initialState, data: Auth): AuthState {
     return {
         ...state,
         token: data.token
@@ -20,7 +20,7 @@ export function authReducer(state: AuthState = initialState, action: AuthActions
     switch (action.type) {
         case AuthActionTypes.LoginSuccess:
         case AuthActionTypes.RegisterSuccess:
-            return loginSuccess(state, action.payload);
+            return authenticate(state, action.payload);
 
         default:
             return state;

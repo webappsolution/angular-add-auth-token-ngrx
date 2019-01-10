@@ -14,7 +14,8 @@ import {
 import {
     Auth,
     LoginCredentials,
-    LoginResponse
+    AuthResponse,
+    RegisterCredentials
 } from "../domain/auth.model";
 import { ApiEndpointService } from "./api-endpoint.service";
 
@@ -29,7 +30,7 @@ export class AuthService {
     }
 
     /**
-     * Attempt API authentication.
+     * Attempt authentication.
      */
     public login(loginCredentials: LoginCredentials): Observable<Auth> {
         const url = ApiEndpointService.getEndpoint(ApiEndpointService.ENDPOINT.LOGIN);
@@ -40,7 +41,7 @@ export class AuthService {
         console.info(`login( Logging into API "${url}" with creds: ${params.username} / ${params.password} )`);
 
         return this.http.post(url, params).pipe(
-            map((response: LoginResponse): Auth => {
+            map((response: AuthResponse): Auth => {
                 console.info(`loginSuccess( Received access token: ${response.accessToken} )`);
                 return {
                     ...params,
@@ -49,6 +50,34 @@ export class AuthService {
             }),
             catchError((fault: HttpErrorResponse) => {
                 console.warn(`loginFault( ${fault.message} )`);
+                return throwError(fault);
+            })
+        );
+    }
+
+    /**
+     * Attempt new user registration.
+     */
+    public register(credentails: RegisterCredentials): Observable<Auth> {
+        const url = ApiEndpointService.getEndpoint(ApiEndpointService.ENDPOINT.REGISTER);
+        const params = {
+            username: credentails.username,
+            password: credentails.password,
+            firstName: credentails.firstName,
+            lastName: credentails.lastName
+        };
+        console.info(`register( Registering new user with API "${url}" with creds: ${params.username} / ${params.password} )`);
+
+        return this.http.post(url, params).pipe(
+            map((response: AuthResponse): Auth => {
+                console.info(`registerSuccess( Received access token: ${response.accessToken} )`);
+                return {
+                    ...params,
+                    token: response.accessToken
+                };
+            }),
+            catchError((fault: HttpErrorResponse) => {
+                console.warn(`registerFault( ${fault.message} )`);
                 return throwError(fault);
             })
         );

@@ -14,7 +14,8 @@ import { AuthService } from "../../service/auth.service";
 import { AuthActionTypes } from "./auth.action";
 import {
     Auth,
-    LoginCredentials
+    LoginCredentials,
+    RegisterCredentials
 } from "../../domain/auth.model";
 import * as AuthActions from "./auth.action";
 import * as RouterActions from "../router/router.action";
@@ -28,13 +29,31 @@ export class AuthEffect {
     login$: Observable<Action> = this.actions$.pipe(
         ofType<AuthActions.Login>(AuthActionTypes.Login),
         map((action: AuthActions.Login) => action.payload),
-        exhaustMap((loginCredentials: LoginCredentials) =>
-            this.authService.login(loginCredentials).pipe(
+        exhaustMap((creds: LoginCredentials) =>
+            this.authService.login(creds).pipe(
                 mergeMap((data: Auth) => [
                     new AuthActions.LoginSuccess(data),
                     new RouterActions.Go({ path: appRoutePaths.beer })
                 ]),
                 catchError((err: HttpErrorResponse) => of(new AuthActions.LoginFault(err.message)))
+            )
+        )
+    );
+
+    /**
+     * Attempt to register a user.
+     */
+    @Effect()
+    register$: Observable<Action> = this.actions$.pipe(
+        ofType<AuthActions.Register>(AuthActionTypes.Register),
+        map((action: AuthActions.Register) => action.payload),
+        exhaustMap((creds: RegisterCredentials) =>
+            this.authService.register(creds).pipe(
+                mergeMap((data: Auth) => [
+                    new AuthActions.RegisterSuccess(data),
+                    new RouterActions.Go({ path: appRoutePaths.beer })
+                ]),
+                catchError((err: HttpErrorResponse) => of(new AuthActions.RegisterFault(err.message)))
             )
         )
     );

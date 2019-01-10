@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { select, Store } from "@ngrx/store";
 import { Observable, of } from "rxjs";
 import { first, mergeMap } from "rxjs/operators";
+import { ApiEndpointService } from "../service/api-endpoint.service";
 import * as fromState from "../state";
 
 @Injectable()
@@ -17,11 +18,18 @@ export class AddTokenHeaderHttpRequestInterceptor implements HttpInterceptor {
      * is a REST endpoint and not login or logout.
      */
     public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        // Consider only adding the auth header to API requests as this will add it to all HTTP requests.
-        return this.addToken(request).pipe(
-            first(),
-            mergeMap((requestWithToken: HttpRequest<any>) => next.handle(requestWithToken))
-        );
+        const isApiEndpoint: boolean = ApiEndpointService.isApiEndpoint(request.url);
+        const isAuthEndpoint: boolean = ApiEndpointService.isAuthEndpoint(request.url);
+
+        // NOTE: Only add the auth token to non-Auth REST endpoints.
+        if (isApiEndpoint && !isAuthEndpoint) {
+            return this.addToken(request).pipe(
+                first(),
+                mergeMap((requestWithToken: HttpRequest<any>) => next.handle(requestWithToken))
+            );
+        } else {
+            return next.handle(request);
+        }
     }
 
     /**

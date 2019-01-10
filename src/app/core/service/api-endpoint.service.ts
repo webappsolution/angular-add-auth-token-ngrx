@@ -25,14 +25,19 @@ export class ApiEndpointService {
     /**
      * Map of contexts for API endpoints.
      */
-    public static CONTEXT = {
-        LOCAL_DEV: "api/"
-    };
+    public static CONTEXT = "api/";
+
+    /**
+     * Map of contexts for API endpoints.
+     */
+    public static AUTH_CONTEXT = "auth/";
+
     /**
      * Map of API endpoints.
      */
     public static ENDPOINT = {
-        LOGIN: "auth/login/",
+        LOGIN: `${ApiEndpointService.AUTH_CONTEXT}login/`,
+        REGISTER: `${ApiEndpointService.AUTH_CONTEXT}register/`,
         BEER: "beer/"
     };
 
@@ -52,7 +57,25 @@ export class ApiEndpointService {
     public static getEndpoint(endpoint: string): string {
         const protocol: string = ApiEndpointService.PROTOCOL.HTTP;
         const domain: string = ApiEndpointService.DOMAIN.LOCAL_DEV;
-        const context: string = ApiEndpointService.CONTEXT.LOCAL_DEV;
+        const context: string = ApiEndpointService.CONTEXT;
         return `${protocol}${domain}${context}${endpoint}`;
+    }
+
+    /**
+     * Determines if the requested URL is an authentication API endpoint.
+     * @param {string} url
+     * @returns {boolean}
+     */
+    public static isAuthEndpoint(url: string = ""): boolean {
+        return url.toLowerCase().indexOf(ApiEndpointService.AUTH_CONTEXT) > -1;
+    }
+
+    /**
+     * Determines if the requested URL is an API endpoint.
+     * @param {string} url
+     * @returns {boolean}
+     */
+    public static isApiEndpoint(url: string = ""): boolean {
+        return url.toLowerCase().indexOf(ApiEndpointService.CONTEXT) > -1;
     }
 }

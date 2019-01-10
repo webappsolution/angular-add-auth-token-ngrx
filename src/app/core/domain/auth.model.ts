@@ -12,6 +12,6 @@ export interface Auth extends LoginCredentials {
     token: string;
 }
 
-export interface LoginResponse {
+export interface AuthResponse {
     accessToken: string;
 }

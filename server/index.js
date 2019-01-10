@@ -97,6 +97,25 @@ server.post("/api/auth/login", (req, res) => {
   res.status(httpStatus.OK).json({accessToken: accessToken});
 });
 
+server.post("/api/auth/register", (req, res) => {
+  let username = null;
+  let password = null;
+  try {
+    username = req.body.username;
+    password = req.body.password;
+    console.log(`login( ${username} / ${password} )`);
+  } catch (err) {
+    invalidLoginRequest(res);
+    return;
+  }
+  if (isAuthenticated({username, password}) === false) {
+    incorrectLoginCredentials(res);
+    return;
+  }
+  const accessToken = createToken({username, password});
+  res.status(httpStatus.OK).json({accessToken: accessToken});
+});
+
 // server.use(/^(?!\/api\/auth).*$/,  (req, res, next) => {
 server.use((req, res, next) => {
   if (req.url.indexOf("/api") !== -1) {

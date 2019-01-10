@@ -13,7 +13,8 @@ import {
 } from "rxjs/operators";
 import {
     Auth,
-    LoginCredentials
+    LoginCredentials,
+    LoginResponse
 } from "../state/auth/auth.model";
 import { ApiEndpointService } from "./api-endpoint.service";
 
@@ -38,7 +39,12 @@ export class AuthService {
         };
 
         return this.http.post(url, params).pipe(
-            map((response: any) => response),
+            map((response: LoginResponse): Auth => {
+                return {
+                    ...params,
+                    token: response.accessToken
+                };
+            }),
             catchError((fault: HttpErrorResponse) => {
                 console.error(`loginFault( ${fault.message} )`);
                 return throwError(fault);

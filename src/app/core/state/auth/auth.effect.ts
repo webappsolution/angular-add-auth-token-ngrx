@@ -3,18 +3,21 @@ import { Injectable } from "@angular/core";
 import { Actions, Effect, ofType } from "@ngrx/effects";
 import { Action, Store } from "@ngrx/store";
 import { Observable, of } from "rxjs";
-import { catchError, exhaustMap, map } from "rxjs/operators";
-import { AuthService } from "../../service/auth.service";
 import {
-    AuthActionTypes,
-    Login,
-    LoginFault,
-    LoginSuccess
-} from "./auth.action";
+    catchError,
+    exhaustMap,
+    map,
+    mergeMap
+} from "rxjs/operators";
+import { appRoutePaths } from "../../../app.routes";
+import { AuthService } from "../../service/auth.service";
+import { AuthActionTypes } from "./auth.action";
 import {
     Auth,
     LoginCredentials
 } from "./auth.model";
+import * as AuthActions from "./auth.action";
+import * as RouterActions from "../router/router.action";
 
 @Injectable()
 export class AuthEffect {
@@ -23,12 +26,15 @@ export class AuthEffect {
      */
     @Effect()
     login$: Observable<Action> = this.actions$.pipe(
-        ofType<Login>(AuthActionTypes.Login),
-        map((action: Login) => action.payload),
-        exhaustMap((loginCreds: LoginCredentials) =>
-            this.authService.login(loginCreds).pipe(
-                map((data: Auth) => new LoginSuccess(data)),
-                catchError((err: HttpErrorResponse) => of(new LoginFault(err.message)))
+        ofType<AuthActions.Login>(AuthActionTypes.Login),
+        map((action: AuthActions.Login) => action.payload),
+        exhaustMap((loginCredentials: LoginCredentials) =>
+            this.authService.login(loginCredentials).pipe(
+                mergeMap((data: Auth) => [
+                    new AuthActions.LoginSuccess(data),
+                    new RouterActions.Go({ path: appRoutePaths.beer })
+                ]),
+                catchError((err: HttpErrorResponse) => of(new AuthActions.LoginFault(err.message)))
             )
         )
     );

@@ -6,3 +6,7 @@ export interface LoginCredentials {
 export interface Auth extends LoginCredentials {
     token: string;
 }
+
+export interface LoginResponse {
+    accessToken: string;
+}

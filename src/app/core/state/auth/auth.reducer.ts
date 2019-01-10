@@ -6,9 +6,7 @@ export interface AuthState {
 }
 
 export const initialState: AuthState = {
-    token:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkJyaW" +
-        "FuIFJpbGV5IiwiaWF0IjoxNTE2MjM5MDIyfQ.Ke1LOKC-5RWHDNCowA8HAvraGgmGwDb5VbxQlAg2j8o",
+    token: "",
 };
 
 function loginSuccess(state: AuthState = initialState, data: Auth): AuthState {

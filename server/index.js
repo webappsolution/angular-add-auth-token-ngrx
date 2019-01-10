@@ -2,10 +2,11 @@ const fs = require("fs");
 const bodyParser = require("body-parser");
 const jsonServer = require("json-server");
 const jwt = require("jsonwebtoken");
+const util = require("./util.js");
 
 const server = jsonServer.create();
 const router = jsonServer.router("./server/db.json");
-const userdb = JSON.parse(fs.readFileSync("./server/users.json", "UTF-8"));
+const usersDatabase = JSON.parse(fs.readFileSync("./server/users.json", "UTF-8"));
 
 server.use(bodyParser.urlencoded({extended: true}));
 server.use(bodyParser.json());
@@ -26,8 +27,8 @@ function verifyToken(token){
 }
 
 // Check if the user exists in database
-function isAuthenticated({username, password}){
-  return userdb.users.findIndex(user => user.username === username && user.password === password) !== -1;
+function isAuthenticated({username, password}) {
+  return usersDatabase.users.findIndex(user => user.username === username && user.password === password) !== -1;
 }
 
 function invalidLoginRequest(res) {
@@ -86,8 +87,8 @@ server.use(/^(?!\/auth).*$/,  (req, res, next) => {
 
 server.use(router);
 
-server.listen(3000, () => {
-  console.log("\n");
+server.listen(PORT, () => {
+  util.consoleReset();
   console.log(`----------------------------------------------------------------------`);
   console.log(`Running Auth API Server on: http://localhost:${PORT}`);
   console.log(`----------------------------------------------------------------------`);

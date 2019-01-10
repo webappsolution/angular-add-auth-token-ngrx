@@ -4,7 +4,7 @@ import {
     Input,
     OnInit
 } from "@angular/core";
-import { Beer } from "../core/state/beer/beer.model";
+import { Beer } from "../core/domain/beer.model";
 
 import { trackByFn } from "../util/angular.util";
 

@@ -6,7 +6,7 @@
 					<h2>Login</h2>
 				</mat-card-title>
 			</mat-card-header>
-			<form [formGroup]="loginForm" (submit)="onLogin($event)">
+			<form [formGroup]="loginForm">
 				<mat-card-content>
 					<mat-form-field>
 						<input formControlName="username" matInput placeholder="Email" type="text" name="email">
@@ -16,7 +16,8 @@
 					</mat-form-field>
 				</mat-card-content>
 				<mat-card-actions>
-					<button type="submit" mat-raised-button color="primary" [disabled]="loginForm.invalid">Login</button>
+					<button mat-raised-button color="primary" [disabled]="loginForm.invalid" (click)="onLogin($event)">Login</button>
+					<button mat-raised-button color="primary" (click)="onRegister($event)">Register</button>
 				</mat-card-actions>
 			</form>
 		</mat-card>

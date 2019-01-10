@@ -1,6 +1,6 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from "@ngrx/entity";
 import { BeerActions, BeerActionTypes } from "./beer.action";
-import { Beer } from "./beer.model";
+import { Beer } from "../../domain/beer.model";
 
 /**
  * Interface to the part of the Store containing BeerState

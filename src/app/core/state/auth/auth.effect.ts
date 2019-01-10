@@ -15,7 +15,7 @@ import { AuthActionTypes } from "./auth.action";
 import {
     Auth,
     LoginCredentials
-} from "./auth.model";
+} from "../../domain/auth.model";
 import * as AuthActions from "./auth.action";
 import * as RouterActions from "../router/router.action";
 

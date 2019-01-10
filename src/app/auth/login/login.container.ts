@@ -1,8 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { select, Store } from "@ngrx/store";
 import { Observable } from "rxjs";
-import { LoginCredentials } from "../../core/state/auth/auth.model";
+import { appRoutePaths } from "../../app.routes";
+import { LoginCredentials } from "../../core/domain/auth.model";
 import * as AuthActions from "../../core/state/auth/auth.action";
+import * as RouterActions from "../../core/state/router/router.action";
 
 /*
 <ehr-login
@@ -18,6 +20,7 @@ import * as AuthActions from "../../core/state/auth/auth.action";
     template: `
     <blog-login
         (login)="login($event)"
+        (register)="register($event)"
     >
     </blog-login>
     `
@@ -51,5 +54,12 @@ export class LoginContainer implements OnInit {
      */
     public login(event: LoginCredentials) {
         this.store$.dispatch(new AuthActions.Login(event));
+    }
+
+    /**
+     * Switch to register view.
+     */
+    public register(event: any) {
+        this.store$.dispatch(new RouterActions.Go({ path: appRoutePaths.register }));
     }
 }

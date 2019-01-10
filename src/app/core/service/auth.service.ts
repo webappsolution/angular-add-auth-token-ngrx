@@ -15,7 +15,7 @@ import {
     Auth,
     LoginCredentials,
     LoginResponse
-} from "../state/auth/auth.model";
+} from "../domain/auth.model";
 import { ApiEndpointService } from "./api-endpoint.service";
 
 @Injectable({

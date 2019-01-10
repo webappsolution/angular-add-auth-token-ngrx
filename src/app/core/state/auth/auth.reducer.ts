@@ -1,5 +1,5 @@
 import { AuthActions, AuthActionTypes } from "./auth.action";
-import { Auth } from "./auth.model";
+import { Auth } from "../../domain/auth.model";
 
 export interface AuthState {
     token: string | null;

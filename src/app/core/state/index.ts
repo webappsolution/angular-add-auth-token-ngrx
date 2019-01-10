@@ -1,5 +1,5 @@
 import { ActionReducerMap, createFeatureSelector, createSelector } from "@ngrx/store";
-import { defaultBeer } from "./beer/beer.model";
+import { defaultBeer } from "../domain/beer.model";
 import * as fromAuth from "./auth/auth.reducer";
 import * as fromBeer from "./beer/beer.reducer";
 

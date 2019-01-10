@@ -20,10 +20,10 @@ const routes: Routes = [
     path: appRoutePaths.login,
     loadChildren: "./auth/login/login.module#LoginModule",
   },
-  // {
-  //   path: appRoutePaths.signup,
-  //   loadChildren: ""
-  // },
+  {
+    path: appRoutePaths.register,
+    loadChildren: "./auth/register/register.module#RegisterModule",
+  },
 
   //////////////////////////////////////////////////
   // Protected Routes

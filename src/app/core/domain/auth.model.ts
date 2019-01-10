@@ -3,6 +3,11 @@ export interface LoginCredentials {
     password: string;
 }
 
+export interface RegisterCredentials extends LoginCredentials {
+    firstName: string;
+    lastName: string;
+}
+
 export interface Auth extends LoginCredentials {
     token: string;
 }

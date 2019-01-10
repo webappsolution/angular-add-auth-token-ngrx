@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { select, Store } from "@ngrx/store";
 import { Observable } from "rxjs";
-import { Beer } from "../core/state/beer/beer.model";
+import { Beer } from "../core/domain/beer.model";
 import * as fromState from "../core/state";
 import * as BeerAction from "../core/state/beer/beer.action";
 

@@ -12,7 +12,7 @@ import {
     map,
     tap
 } from "rxjs/operators";
-import { Beer } from "../state/beer/beer.model";
+import { Beer } from "../domain/beer.model";
 import { ApiEndpointService } from "./api-endpoint.service";
 
 @Injectable({

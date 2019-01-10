@@ -1,5 +1,5 @@
 export const appRoutePaths = {
     login: "login",
-    signup: "signup",
+    register: "register",
     beer: "beer",
 };

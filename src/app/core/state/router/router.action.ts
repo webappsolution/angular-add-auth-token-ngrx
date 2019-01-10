@@ -9,7 +9,7 @@ export enum RouterActionTypes {
 export class Go implements Action {
     readonly type = RouterActionTypes.Go;
 
-    constructor(public payload) {}
+    constructor(public payload: any) {}
 }
 
 export class Back implements Action {

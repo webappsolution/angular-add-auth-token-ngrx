@@ -1,5 +1,5 @@
 import { Action } from "@ngrx/store";
-import { Beer } from "./beer.model";
+import { Beer } from "../../domain/beer.model";
 
 export enum BeerActionTypes {
     GetBeers = "[Beer] GetBeers",

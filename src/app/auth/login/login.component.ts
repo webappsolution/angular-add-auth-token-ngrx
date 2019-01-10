@@ -10,7 +10,7 @@ import {
     FormGroup,
     Validators
 } from "@angular/forms";
-import { LoginCredentials } from "../../core/state/auth/auth.model";
+import { LoginCredentials } from "../../core/domain/auth.model";
 import * as FormUtil from "../../util/form.util";
 import * as ValidationUtil from "../../util/validation.util";
 
@@ -27,6 +27,12 @@ export class LoginComponent implements OnInit {
      */
     @Output()
     public login: EventEmitter<LoginCredentials> = new EventEmitter<LoginCredentials>();
+
+    /**
+     * Dispatches an event to switch to the registration view.
+     */
+    @Output()
+    public register: EventEmitter<void> = new EventEmitter<void>();
 
     /**
      * Reference to the login form.
@@ -86,5 +92,14 @@ export class LoginComponent implements OnInit {
         const payload: LoginCredentials = this.getFormValue();
         console.log(`onLogin( username: ${payload.username}, password: ${payload.password} )`);
         this.login.emit(payload);
+    }
+
+    /**
+     * Handles the form submission and emits a login event with the user's credentials.
+     * @param event
+     */
+    public onRegister(event: any) {
+        console.log(`onRegister( )`);
+        this.register.emit();
     }
 }

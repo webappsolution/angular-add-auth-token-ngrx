@@ -11,7 +11,7 @@ import {
     GetBeersFault,
     GetBeersSuccess
 } from "./beer.action";
-import { Beer } from "./beer.model";
+import { Beer } from "../../domain/beer.model";
 
 @Injectable()
 export class BeerEffect {

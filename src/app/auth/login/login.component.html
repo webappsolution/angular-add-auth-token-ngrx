@@ -16,10 +16,11 @@
 					</mat-form-field>
 				</mat-card-content>
 				<mat-card-actions>
-					<button mat-raised-button color="primary" [disabled]="loginForm.invalid" (click)="onLogin($event)">Login</button>
+					<button mat-raised-button color="primary" [disabled]="loginForm.invalid || pending" (click)="onLogin($event)">Login</button>
 					<button mat-raised-button color="primary" (click)="onRegister($event)">Register</button>
 				</mat-card-actions>
 			</form>
+			<div *ngIf="error">{{ error }}</div>
 		</mat-card>
 	</div>
 </div>

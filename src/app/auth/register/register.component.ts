@@ -3,7 +3,8 @@ import {
 	OnInit,
 	ChangeDetectionStrategy,
 	Output,
-	EventEmitter
+	EventEmitter,
+	Input
 } from "@angular/core";
 import {
 	FormBuilder,
@@ -21,6 +22,17 @@ import * as ValidationUtil from "../../util/validation.util";
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegisterComponent implements OnInit {
+	/**
+	 * An optional error message to display if login failed.
+	 */
+	@Input()
+	public error = "";
+
+	/**
+	 * Flag indicating if login is pending.
+	 */
+	@Input()
+	public pending = false;
 
 	/**
 	 * Dispatches an event to perform register.

@@ -5,20 +5,14 @@ import { appRoutePaths } from "../../app.routes";
 import { LoginCredentials } from "../../core/domain/auth.model";
 import * as AuthActions from "../../core/state/auth/auth.action";
 import * as RouterActions from "../../core/state/router/router.action";
-
-/*
-<ehr-login
-        [errorMessage]="errorMessage$ | async"
-        [pending]="loginPending$ | async"
-        (login)="login($event)"
-    >
-    </ehr-login>
- */
+import * as fromState from "../../core/state/";
 
 @Component({
     selector: "blog-login-container",
     template: `
-    <blog-login
+    <blog-login 
+        [error]="error$ | async"
+        [pending]="pending$ | async"
         (login)="login($event)"
         (register)="register($event)"
     >
@@ -29,12 +23,12 @@ export class LoginContainer implements OnInit {
     /**
      * The possible login error.
      */
-    // public errorMessage$: Observable<Auth0Error>;
+    public error$: Observable<string>;
 
     /**
      * Flag indicating if login is pending.
      */
-    // public loginPending$: Observable<boolean>;
+    public pending$: Observable<boolean>;
 
     /**
      * Constructor.
@@ -45,8 +39,8 @@ export class LoginContainer implements OnInit {
      * Initialize the component.
      */
     public ngOnInit() {
-        // this.errorMessage$ = this.store$.pipe(select(fromAuth.getLoginError));
-        // this.loginPending$ = this.store$.pipe(select(fromAuth.isLoginPending));
+        this.error$ = this.store$.pipe(select(fromState.getError));
+        this.pending$ = this.store$.pipe(select(fromState.getPending));
     }
 
     /**

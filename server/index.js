@@ -1,6 +1,10 @@
+// 3rd party modules.
 const bodyParser = require("body-parser");
 const jsonServer = require("json-server");
-const authTokenInterceptor = require("./auth/auth-token.interceptor");
+
+// App modules.
+const authTokenHttpRequestInterceptor = require("./http-interceptor/auth-token.http-request-interceptor");
+const mockDataHttpRequestInterceptor = require("./http-interceptor/mock-data.http-request-interceptor");
 const util = require("./util");
 const config = require("./config.json");
 
@@ -13,7 +17,10 @@ server.use(bodyParser.json());
 server.use(jsonServer.defaults());
 
 // Add a security filter to intercept and inspect requests for valid tokens.
-server.use(authTokenInterceptor.intercept);
+server.use(authTokenHttpRequestInterceptor.intercept);
+
+// Delay all mock data request.
+server.use(mockDataHttpRequestInterceptor.intercept);
 
 // API routes.
 server.use("/api/auth", require("./auth/auth.controller"));

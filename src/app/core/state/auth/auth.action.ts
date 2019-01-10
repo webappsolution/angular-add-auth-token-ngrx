@@ -27,7 +27,7 @@ export class LoginSuccess implements Action {
 
 export class LoginFault implements Action {
     readonly type = AuthActionTypes.LoginFault;
-    constructor(public errorMessage: string) { }
+    constructor(public payload: string) { }
 }
 
 export class Register implements Action {
@@ -42,7 +42,7 @@ export class RegisterSuccess implements Action {
 
 export class RegisterFault implements Action {
     readonly type = AuthActionTypes.RegisterFault;
-    constructor(public errorMessage: string) { }
+    constructor(public payload: string) { }
 }
 
 export type AuthActions =

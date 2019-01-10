@@ -23,6 +23,16 @@ export const getToken = createSelector(
     fromAuth.getToken
 );
 
+export const getError = createSelector(
+    selectAuthState,
+    fromAuth.getError
+);
+
+export const getPending = createSelector(
+    selectAuthState,
+    fromAuth.getPending
+);
+
 // -------------------------------------------------------------------
 // BEER SELECTORS
 // -------------------------------------------------------------------

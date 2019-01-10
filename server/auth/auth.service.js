@@ -3,11 +3,11 @@ const jwt = require("jsonwebtoken");
 const config = require("../config.json");
 
 // Create a reference to our mocked out users database.
-const usersDatabase = JSON.parse(fs.readFileSync("./server/users.json", "UTF-8"));
+const usersDatabase = JSON.parse(fs.readFileSync("./server/users.json", "UTF-8")).users;
 
 // Check if the user exists in database (matching username and password) which we'll say is good enough to be authenticated.
-function isAuthenticated({username, password}) {
-  return usersDatabase.users.findIndex(user => user.username === username && user.password === password) !== -1;
+function doesUsernameAndPasswordExist({username, password}) {
+  return usersDatabase.findIndex(user => user.username === username && user.password === password) !== -1;
 }
 
 // Create a token from a payload.
@@ -19,17 +19,38 @@ function createToken(payload) {
 }
 
 function authenticate(username, password) {
-  console.log(`authenticate( ${username} / ${password} )`);
+  console.info(`authenticate( ${username} / ${password} )`);
 
-  if (isAuthenticated({username, password})) {
-    console.log(`authenticate( Success )`);
+  if (doesUsernameAndPasswordExist({username, password})) {
+    console.info(`authenticateSuccess( ${username} )`);
     return createToken({username, password})
   } else {
-    console.warn(`authenticate( Fault )`);
+    console.warn(`authenticateFault()`);
+    return null;
+  }
+}
+
+function register(username, password, firstName, lastName) {
+  console.log(`register( register "${firstName} ${lastName}" with username and pw: ${username} / ${password} )`);
+
+  if (!doesUsernameAndPasswordExist({username, password})) {
+    console.info(`registerSuccess( ${username} )`);
+    const newUser = {
+      id: usersDatabase.length + 1,
+      username: username,
+      password: password,
+      firstName: firstName,
+      lastName: lastName
+    };
+    usersDatabase.push(newUser);
+    return createToken({username, password})
+  } else {
+    console.warn(`registerFault( User "${username}" already exists. )`);
     return null;
   }
 }
 
 module.exports = {
   authenticate,
+  register
 };

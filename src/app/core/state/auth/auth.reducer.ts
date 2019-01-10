@@ -18,9 +18,9 @@ function loginSuccess(state: AuthState = initialState, data: Auth): AuthState {
 
 export function authReducer(state: AuthState = initialState, action: AuthActions): AuthState {
     switch (action.type) {
-        case AuthActionTypes.LoginSuccess: {
+        case AuthActionTypes.LoginSuccess:
+        case AuthActionTypes.RegisterSuccess:
             return loginSuccess(state, action.payload);
-        }
 
         default:
             return state;

@@ -12,10 +12,17 @@ router.post("/register", register);
 // Export the routes defined here in this controller to the main server setup.
 module.exports = router;
 
-// Handles auth requests that contain the required data: username and password.
+// Handles auth requests that don't contain the required data: username and password.
 function invalidLoginRequest(res) {
   const message = `Invalid login request. Must contain a valid username and password. ${httpStatus["400_MESSAGE"]}`;
   console.log(`invalidLoginRequest( ${message} )`);
+  return util.createErrorResponse(res, httpStatus.BAD_REQUEST, message);
+}
+
+// Handles registration requests that don't contain the required data.
+function invalidRegisterRequest(res) {
+  const message = `Invalid login request. Must contain a valid firstName, lastName, username and password. ${httpStatus["400_MESSAGE"]}`;
+  console.log(`invalidRegisterRequest( ${message} )`);
   return util.createErrorResponse(res, httpStatus.BAD_REQUEST, message);
 }
 
@@ -24,6 +31,13 @@ function incorrectLoginCredentials(res) {
   const message = `Incorrect username or password. ${httpStatus["401_MESSAGE"]}`;
   console.log(`incorrectLoginCredentials( ${message} )`);
   return util.createErrorResponse(res, httpStatus.UNAUTHORIZED, message);
+}
+
+// Handles failed user registration attempts.
+function failedToRegister(res) {
+  const message = `Cannot register user. ${httpStatus["400_MESSAGE"]}`;
+  console.log(`failedToRegister( ${message} )`);
+  return util.createErrorResponse(res, httpStatus.BAD_REQUEST, message);
 }
 
 // Handles the requests that attempt to authenticate the user.
@@ -56,21 +70,26 @@ function authenticate(req, res, next) {
 function register(req, res, next) {
   let username = null;
   let password = null;
+  let firstName = null;
+  let lastName = null;
   try {
     username = req.body.username;
     password = req.body.password;
-    console.log(`login( ${username} / ${password} )`);
+    firstName = req.body.firstName;
+    lastName = req.body.lastName;
+    console.log(`register( Registering "${firstName} ${lastName}" with username and pw: ${username} / ${password} )`);
   } catch (err) {
-    invalidLoginRequest(res);
+    invalidRegisterRequest(res);
     return;
   }
-  if (isAuthenticated({username, password}) === false) {
-    incorrectLoginCredentials(res);
+
+  // Attempt to register the user.
+  const token = authService.register(username, password, firstName, lastName);
+  if (!token) {
+    failedToRegister(res);
     return;
   }
-  const accessToken = createToken({username, password});
-  res.status(httpStatus.OK).json({accessToken: accessToken});
-  // userServic/*e.authenticate(req.body)
-  //   .then(user => user ? res.json(user) : res.status(400).json({ message: 'Username or password is incorrect' }))
-  //   .catch(e*/rr => next(err));
+
+  // We have a valid token so return a success response with a token.
+  util.createSuccessResponse(res, {accessToken: token});
 }

@@ -39,11 +39,11 @@ function getTokenFromHeader(req) {
 }
 
 function isAuthApiEndpoint(url) {
-  return url.indexOf("/api") !== -1;
+  return url.indexOf("/auth") !== -1;
 }
 
 function isApiEndpoint(url) {
-  return url.indexOf("/auth") !== -1;
+  return url.indexOf("/api") !== -1;
 }
 
 function requiresTokenValidation(url) {

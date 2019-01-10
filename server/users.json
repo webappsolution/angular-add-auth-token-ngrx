@@ -2,19 +2,22 @@
   "users": [
     {
       "id": 1,
-      "name": "Tom Brady",
+      "firstName": "Tom",
+      "lastName": "Brady",
       "username": "tom.brady@patriots.com",
-      "password": "tb12"
+      "password": "goat"
     },
     {
       "id": 2,
-      "name": "test",
+      "firstName": "test",
+      "lastName": "test",
       "username": "test@test.com",
       "password": "test"
     },
     {
       "id": 3,
-      "name": "admin",
+      "firstName": "admin",
+      "lastName": "admin",
       "username": "admin@admin.com",
       "password": "admin"
     }

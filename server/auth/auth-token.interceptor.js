@@ -11,13 +11,13 @@ function isAuthHeaderInvalid(req) {
 function invalidAuthHeader(res) {
   const message = `Error in authorization format. Invalid authentication header. ${httpStatus["401_MESSAGE"]}`;
   console.log(`invalidAuthHeader( ${message} )`);
-  return util.createResponseError(res, httpStatus.UNAUTHORIZED, message);
+  return util.createErrorResponse(res, httpStatus.UNAUTHORIZED, message);
 }
 
 function invalidToken(res) {
   const message = `Invalid token. ${httpStatus["401_MESSAGE"]}`;
   console.log(`invalidToken( ${message} )`);
-  return util.createResponseError(res, httpStatus.UNAUTHORIZED, message);
+  return util.createErrorResponse(res, httpStatus.UNAUTHORIZED, message);
 }
 
 // Verify the token.

@@ -12,18 +12,21 @@ router.post("/register", register);
 // Export the routes defined here in this controller to the main server setup.
 module.exports = router;
 
+// Handles auth requests that contain the required data: username and password.
 function invalidLoginRequest(res) {
   const message = `Invalid login request. Must contain a valid username and password. ${httpStatus["400_MESSAGE"]}`;
   console.log(`invalidLoginRequest( ${message} )`);
   return util.createErrorResponse(res, httpStatus.BAD_REQUEST, message);
 }
 
+// Handles failed authentication attempts.
 function incorrectLoginCredentials(res) {
   const message = `Incorrect username or password. ${httpStatus["401_MESSAGE"]}`;
   console.log(`incorrectLoginCredentials( ${message} )`);
   return util.createErrorResponse(res, httpStatus.UNAUTHORIZED, message);
 }
 
+// Handles the requests that attempt to authenticate the user.
 function authenticate(req, res, next) {
 
   // Attempt to grab the username and password from the request.
@@ -49,6 +52,7 @@ function authenticate(req, res, next) {
   util.createSuccessResponse(res, {accessToken: token});
 }
 
+// Handles the requests that attempt to register a new user.
 function register(req, res, next) {
   let username = null;
   let password = null;

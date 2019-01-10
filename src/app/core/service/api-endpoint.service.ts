@@ -1,14 +1,7 @@
 import {
     HttpClient,
-    HttpErrorResponse
 } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import {
-    Observable,
-    throwError
-} from "rxjs";
-import { catchError, map } from "rxjs/operators";
-import { Beer } from "../state/beer/beer.model";
 
 @Injectable({
     providedIn: "root"
@@ -33,12 +26,13 @@ export class ApiEndpointService {
      * Map of contexts for API endpoints.
      */
     public static CONTEXT = {
-        LOCAL_DEV: ""
+        LOCAL_DEV: "api/"
     };
     /**
      * Map of API endpoints.
      */
     public static ENDPOINT = {
+        LOGIN: "auth/login/",
         BEER: "beer/"
     };
 

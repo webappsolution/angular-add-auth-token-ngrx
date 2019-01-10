@@ -3,6 +3,6 @@ export interface LoginCredentials {
     password: string;
 }
 
-export interface Auth {
+export interface Auth extends LoginCredentials {
     token: string;
 }

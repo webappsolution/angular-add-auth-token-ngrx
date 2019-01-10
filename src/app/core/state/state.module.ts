@@ -4,12 +4,14 @@ import { StoreRouterConnectingModule } from "@ngrx/router-store";
 import { StoreModule } from "@ngrx/store";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { environment } from "../../../environments/environment";
+import { AuthEffect } from "./auth/auth.effect";
 import { BeerEffect } from "./beer/beer.effect";
 import { reducers } from "./index";
 import { RouterEffect } from "./router/router.effect";
 
 const EFFECTS = [
     RouterEffect,
+    AuthEffect,
     BeerEffect
 ];
 

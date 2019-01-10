@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { SharedModule } from "../../shared/shared.module";
 import { LoginRoutingModule } from "./login-routing.module";
 import { LoginComponent } from "./login.component";
+import { LoginContainer } from "./login.container";
 
 const MODULES = [
     SharedModule,
@@ -9,6 +10,7 @@ const MODULES = [
 ];
 
 const COMPONENTS: any = [
+    LoginContainer,
     LoginComponent,
 ];
 

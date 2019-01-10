@@ -2,6 +2,7 @@ const fs = require("fs");
 const bodyParser = require("body-parser");
 const jsonServer = require("json-server");
 const jwt = require("jsonwebtoken");
+const httpStatus = require("http-status");
 const util = require("./util.js");
 
 const server = jsonServer.create();
@@ -14,7 +15,7 @@ server.use(jsonServer.defaults());
 
 const SECRET_KEY = "123456789";
 const expiresIn = "1h";
-const PORT = 3000;
+const PORT = 4301;
 
 // Create a token from a payload
 function createToken(payload){
@@ -26,30 +27,50 @@ function verifyToken(token){
   return  jwt.verify(token, SECRET_KEY, (err, decode) => decode !== undefined ?  decode : err);
 }
 
+// Return the token valid from the request header
+function getTokenFromHeader(req) {
+  return req.headers.authorization.split(" ")[1];
+}
+
 // Check if the user exists in database
 function isAuthenticated({username, password}) {
   return usersDatabase.users.findIndex(user => user.username === username && user.password === password) !== -1;
 }
 
 function invalidLoginRequest(res) {
-  const status = 400;
-  const message = "Invalid login request. Must contain a valid username and password.";
+  const message = `Invalid login request. Must contain a valid username and password. ${httpStatus["400_MESSAGE"]}`;
   console.log(`invalidLoginRequest( ${message} )`);
-  return createResponseError(res, status, message);
+  return createResponseError(res, httpStatus.BAD_REQUEST, message);
 }
 
 function incorrectLoginCredentials(res) {
-  const status = 401;
-  const message = "Incorrect username or password";
+  const message = `Incorrect username or password. ${httpStatus["401_MESSAGE"]}`;
   console.log(`incorrectLoginCredentials( ${message} )`);
-  return createResponseError(res, status, message);
+  return createResponseError(res, httpStatus.UNAUTHORIZED, message);
+}
+
+function invalidAuthHeader(res) {
+  const message = `Error in authorization format. Invalid authentication header. ${httpStatus["401_MESSAGE"]}`;
+  console.log(`invalidAuthHeader( ${message} )`);
+  return createResponseError(res, httpStatus.UNAUTHORIZED, message);
+}
+
+function invalidToken(res) {
+  const message = `Invalid token. ${httpStatus["401_MESSAGE"]}`;
+  console.log(`invalidToken( ${message} )`);
+  return createResponseError(res, httpStatus.UNAUTHORIZED, message);
+}
+
+function isAuthHeaderInvalid(req) {
+  const authHeader = req.headers.authorization;
+  return !authHeader || authHeader.split(" ")[0] !== "Bearer";
 }
 
 function createResponseError(res, status, message) {
   return res.status(status).json({status, message});
 }
 
-server.post("/auth/login", (req, res) => {
+server.post("/api/auth/login", (req, res) => {
   let username = null;
   let password = null;
   try {
@@ -65,27 +86,23 @@ server.post("/auth/login", (req, res) => {
     return;
   }
   const accessToken = createToken({username, password});
-  res.status(200).json({accessToken: accessToken})
+  res.status(httpStatus.OK).json({accessToken: accessToken});
 });
 
-server.use(/^(?!\/auth).*$/,  (req, res, next) => {
-  if (req.headers.authorization === undefined || req.headers.authorization.split(" ")[0] !== "Bearer") {
-    const status = 401;
-    const message = "Error in authorization format";
-    res.status(status).json({status, message});
+server.use(/^(?!\/api\/auth).*$/,  (req, res, next) => {
+  if (isAuthHeaderInvalid(req)) {
+    invalidAuthHeader(res);
     return;
   }
   try {
-    verifyToken(req.headers.authorization.split(" ")[1]);
-    next()
+    verifyToken(getTokenFromHeader(res));
+    next();
   } catch (err) {
-    const status = 401;
-    const message = "Error access token is revoked";
-    res.status(status).json({status, message});
+    invalidToken(res);
   }
 });
 
-server.use(router);
+server.use("/api", router);
 
 server.listen(PORT, () => {
   util.consoleReset();

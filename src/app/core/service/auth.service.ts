@@ -37,16 +37,18 @@ export class AuthService {
             username: loginCredentials.username,
             password: loginCredentials.password
         };
+        console.info(`login( Logging into API "${url}" with creds: ${params.username} / ${params.password} )`);
 
         return this.http.post(url, params).pipe(
             map((response: LoginResponse): Auth => {
+                console.info(`loginSuccess( Received access token: ${response.accessToken} )`);
                 return {
                     ...params,
                     token: response.accessToken
                 };
             }),
             catchError((fault: HttpErrorResponse) => {
-                console.error(`loginFault( ${fault.message} )`);
+                console.warn(`loginFault( ${fault.message} )`);
                 return throwError(fault);
             })
         );

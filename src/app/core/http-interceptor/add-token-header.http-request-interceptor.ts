@@ -41,7 +41,7 @@ export class AddTokenHeaderHttpRequestInterceptor implements HttpInterceptor {
                         withCredentials: true
                     });
                 } else {
-                    console.warn(`Invalid token!!! Cannot use token "${token}".`);
+                    console.warn(`addToken( Invalid token!!! Cannot use token "${token}" for endpoint: ${request.url} ).`);
                 }
                 return of(request);
             })

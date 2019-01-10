@@ -34,7 +34,7 @@ export class BeerService {
         return this.http.get(url).pipe(
             map((response: any) => response),
             catchError((fault: HttpErrorResponse) => {
-                console.error(`getAllFault( ${fault.message} )`);
+                console.warn(`getAllFault( ${fault.message} )`);
                 return throwError(fault);
             })
         );

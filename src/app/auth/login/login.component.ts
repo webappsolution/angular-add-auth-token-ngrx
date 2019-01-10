@@ -82,7 +82,7 @@ export class LoginComponent implements OnInit {
      */
     public onLogin(event: any) {
         const payload: LoginCredentials = this.getFormValue();
-        console.log(`onLogin( username: ${payload.username}, username: ${payload.password} )`);
+        console.log(`onLogin( username: ${payload.username}, password: ${payload.password} )`);
         this.login.emit(payload);
     }
 }

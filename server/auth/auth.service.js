@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const config = require("../config.json");
 
 // Create a reference to our mocked out users database.
-const usersDatabase = JSON.parse(fs.readFileSync("./server/users.json", "UTF-8")).users;
+const usersDatabase = JSON.parse(fs.readFileSync("./server/database/mock/users.json", "UTF-8")).users;
 
 // Check if the user exists in database (matching username and password) which we'll say is good enough to be authenticated.
 function doesUsernameAndPasswordExist({username, password}) {

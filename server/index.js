@@ -5,7 +5,7 @@ const util = require("./util");
 const config = require("./config.json");
 
 const server = jsonServer.create();
-const router = jsonServer.router("./server/db.json");
+const router = jsonServer.router("./server/database/mock/db.json");
 
 // Setup express request body parsing.
 server.use(bodyParser.urlencoded({extended: true}));

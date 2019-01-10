@@ -30,9 +30,13 @@ export class BeerService {
      */
     public getAll(): Observable<Beer[]> {
         const url = ApiEndpointService.getEndpoint(ApiEndpointService.ENDPOINT.BEER);
+        console.info(`getAll( Getting ball beers from API "${url}". )`);
 
         return this.http.get(url).pipe(
-            map((response: any) => response),
+            map((response: any) => {
+                console.info(`getAllSuccess( Received all beers. )`);
+                return response;
+            }),
             catchError((fault: HttpErrorResponse) => {
                 console.warn(`getAllFault( ${fault.message} )`);
                 return throwError(fault);

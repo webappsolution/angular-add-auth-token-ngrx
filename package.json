@@ -12,7 +12,7 @@
     "dev-auth": "concurrently \"npm run server-auth\" \"npm run client\"",
     "client": "ng serve --port 4300",
     "server": "json-server ./server/db.json --port 4301 --watch",
-    "server-auth": "nodemon ./server"
+    "server-auth": "nodemon ./server --inspect"
   },
   "private": true,
   "dependencies": {

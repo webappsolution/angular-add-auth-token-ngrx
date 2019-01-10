@@ -40,23 +40,25 @@ export class LoginComponent implements OnInit {
 
     /**
      * Initializes the component by building the form.
+     *
+     * TODO: BMR: 01/10/2019: Add form validation in a future post.
      */
     public ngOnInit(): void {
         this.loginForm = new FormGroup(
             this.formBuilder.group({
                 username: [
                     "",
-                    [
-                        Validators.required,
-                        Validators.email
-                    ]
+                    // [
+                    //     Validators.required,
+                    //     Validators.email
+                    // ]
                 ],
                 password: [
                     "",
-                    [
-                        Validators.required,
-                        Validators.maxLength(ValidationUtil.VALIDATION_RULE.PASSWORD.MAX_LENGTH)
-                    ]
+                    // [
+                    //     Validators.required,
+                    //     Validators.maxLength(ValidationUtil.VALIDATION_RULE.PASSWORD.MAX_LENGTH)
+                    // ]
                 ],
             }).controls,
             {

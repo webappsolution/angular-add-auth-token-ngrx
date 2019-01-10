@@ -17,22 +17,30 @@ const SECRET_KEY = "123456789";
 const expiresIn = "1h";
 const PORT = 4301;
 
-// Create a token from a payload
-function createToken(payload){
+// Create a token from a payload.
+function createToken(payload) {
   return jwt.sign(payload, SECRET_KEY, {expiresIn})
 }
 
-// Verify the token
-function verifyToken(token){
-  return  jwt.verify(token, SECRET_KEY, (err, decode) => decode !== undefined ?  decode : err);
+// Verify the token.
+function verifyToken(token) {
+  jwt.verify(token, SECRET_KEY, function(err, decoded) {
+    if (err) {
+      console.log(`verifyToken( INVALID )`);
+      throw new Error(`${err.name}: ${err.message}`);
+    } else {
+      console.log(`verifyToken( VALID )`);
+      return decoded;
+    }
+  });
 }
 
-// Return the token valid from the request header
+// Return the token value from the request header.
 function getTokenFromHeader(req) {
   return req.headers.authorization.split(" ")[1];
 }
 
-// Check if the user exists in database
+// Check if the user exists in database (matching username and password) which we'll say is good enough to be authenticated.
 function isAuthenticated({username, password}) {
   return usersDatabase.users.findIndex(user => user.username === username && user.password === password) !== -1;
 }
@@ -89,16 +97,24 @@ server.post("/api/auth/login", (req, res) => {
   res.status(httpStatus.OK).json({accessToken: accessToken});
 });
 
-server.use(/^(?!\/api\/auth).*$/,  (req, res, next) => {
-  if (isAuthHeaderInvalid(req)) {
-    invalidAuthHeader(res);
-    return;
-  }
-  try {
-    verifyToken(getTokenFromHeader(res));
+// server.use(/^(?!\/api\/auth).*$/,  (req, res, next) => {
+server.use((req, res, next) => {
+  if (req.url.indexOf("/api") !== -1) {
+    console.log(`handleApiRequests( Validate token. )`);
+    if (isAuthHeaderInvalid(req)) {
+      invalidAuthHeader(res);
+      return;
+    }
+    try {
+      verifyToken(getTokenFromHeader(req));
+      next();
+    } catch (err) {
+      console.warn(err);
+      invalidToken(res);
+    }
+  } else {
+    console.log(`handleApiRequests( Not an API request so don't validate token. )`);
     next();
-  } catch (err) {
-    invalidToken(res);
   }
 });
 

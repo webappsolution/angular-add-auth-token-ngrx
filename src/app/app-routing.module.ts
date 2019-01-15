@@ -5,7 +5,6 @@ import {
     Routes
 } from "@angular/router";
 import { appRoutePaths } from "./app.routes";
-// import { AuthGuard } from "./core/service/auth-guard.service";
 
 const PROVIDERS = [
     {
@@ -32,7 +31,9 @@ const routes: Routes = [
     //////////////////////////////////////////////////
     {
         path: appRoutePaths.beer,
-        loadChildren: "./beer/beer.module#BeerModule"
+        loadChildren: "./beer/beer.module#BeerModule",
+        // TODO: BMR: 01/15/2019: We'll add an AuthGuard in a future post, but leaving this here as a placeholder.
+        // canActivate: [TBD]
     },
 
     //////////////////////////////////////////////////

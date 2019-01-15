@@ -52,7 +52,7 @@ export class AddTokenHeaderHttpRequestInterceptor implements HttpInterceptor {
      */
     private addToken(request: HttpRequest<any>): Observable<HttpRequest<any>> {
         // NOTE: DO NOT try to immediately setup this selector in the constructor or as an assignment in a
-        // class member variable as there's no stores available when this interceptor fires fires up and
+        // class member variable as there's no stores available when this interceptor first fires up and
         // as a result it'll throw a runtime error.
         return this.store$.pipe(
             select(fromState.getToken),

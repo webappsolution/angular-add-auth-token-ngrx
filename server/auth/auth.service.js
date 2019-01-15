@@ -10,6 +10,11 @@ function doesUsernameAndPasswordExist({username, password}) {
   return usersDatabase.findIndex(user => user.username === username && user.password === password) !== -1;
 }
 
+// Check if the user exists in database (matching username).
+function doesUsernameExist({username}) {
+  return usersDatabase.findIndex(user => user.username === username) !== -1;
+}
+
 // Create a token from a payload.
 function createToken(payload) {
   const jwtConfig = {
@@ -33,7 +38,7 @@ function authenticate(username, password) {
 function register(username, password, firstName, lastName) {
   console.log(`register( register "${firstName} ${lastName}" with username and pw: ${username} / ${password} )`);
 
-  if (!doesUsernameAndPasswordExist({username, password})) {
+  if (!doesUsernameExist({username})) {
     console.info(`registerSuccess( ${username} )`);
     const newUser = {
       id: usersDatabase.length + 1,

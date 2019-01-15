@@ -51,7 +51,8 @@ function authenticate(req, res, next) {
     password = req.body.password;
     console.log(`authenticate( ${username} / ${password} )`);
     if(!username || !password) {
-      throw new Error("Username and password must be valid values.");
+      invalidLoginRequest(res);
+      return;
     }
   } catch (err) {
     invalidLoginRequest(res);
@@ -82,7 +83,8 @@ function register(req, res, next) {
     lastName = req.body.lastName;
     console.log(`register( Registering "${firstName} ${lastName}" with username and pw: ${username} / ${password} )`);
     if(!username || !password || !firstName || !lastName) {
-      throw new Error("Username, password, first and last names must be valid values.");
+      invalidRegisterRequest(res);
+      return;
     }
   } catch (err) {
     invalidRegisterRequest(res);

@@ -11,7 +11,7 @@ const MODULES = [
 
 const COMPONENTS: any = [
     RegisterContainer,
-    RegisterComponent,
+    RegisterComponent
 ];
 
 @NgModule({
@@ -19,4 +19,5 @@ const COMPONENTS: any = [
     exports: COMPONENTS,
     declarations: COMPONENTS
 })
-export class RegisterModule {}
+export class RegisterModule {
+}

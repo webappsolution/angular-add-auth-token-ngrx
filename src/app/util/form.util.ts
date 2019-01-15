@@ -28,7 +28,7 @@ export function getFormControl(formGroup: FormGroup, formControlName: string): F
     if (formGroup instanceof FormGroup === false) {
         throw new Error(`No form group with name "${String(formGroup)}".`);
     }
-    const control: FormControl = formGroup.controls[formControlName] as FormControl;
+    const control: FormControl = formGroup.controls[ formControlName ] as FormControl;
     if (!control) {
         throw new Error(`No form control with name "${formControlName}".`);
     }

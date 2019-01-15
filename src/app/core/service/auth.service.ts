@@ -9,12 +9,12 @@ import {
 } from "rxjs";
 import {
     catchError,
-    map,
+    map
 } from "rxjs/operators";
 import {
     Auth,
-    LoginCredentials,
     AuthResponse,
+    LoginCredentials,
     RegisterCredentials
 } from "../domain/auth.model";
 import { ApiEndpointService } from "./api-endpoint.service";

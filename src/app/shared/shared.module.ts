@@ -1,6 +1,9 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import {
+    FormsModule,
+    ReactiveFormsModule
+} from "@angular/forms";
 import { MaterialModule } from "./material/material.module";
 
 const MODULES = [
@@ -21,4 +24,5 @@ const MODULES = [
     exports: MODULES,
     declarations: []
 })
-export class SharedModule {}
+export class SharedModule {
+}

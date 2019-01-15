@@ -1,5 +1,11 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { select, Store } from "@ngrx/store";
+import {
+    Component,
+    OnInit
+} from "@angular/core";
+import {
+    select,
+    Store
+} from "@ngrx/store";
 import { Observable } from "rxjs";
 import { Beer } from "../core/domain/beer.model";
 import * as fromState from "../core/state";
@@ -23,7 +29,8 @@ export class BeerListContainer implements OnInit {
     /**
      * Constructor.
      */
-    public constructor(private store$: Store<any>) {}
+    public constructor(private store$: Store<any>) {
+    }
 
     /**
      * Initialize the component.

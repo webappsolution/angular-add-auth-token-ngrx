@@ -7,12 +7,13 @@
 	<mat-card-content>
 		<!--<mat-list [@listAnimation]="prepareListState()" [@.disabled]="animationsDisabled">-->
 		<mat-list>
-			<mat-list-item *ngFor="let beer of beers; trackBy: trackBeer" class="record">
+			<mat-list-item *ngFor="let beer of beers; trackBy: trackBeer"
+			               class="record">
 				<h3 mat-line>{{beer.name}}</h3>
 				<p mat-line>{{beer.brewery}}</p>
 				<p mat-line>Rating {{beer.rating}}</p>
 				<!--<button *ngIf="!readonly" mat-icon-button (click)="deleted.emit(beer);$event.stopImmediatePropagation();">-->
-					<!--<mat-icon>close</mat-icon>-->
+				<!--<mat-icon>close</mat-icon>-->
 				<!--</button>-->
 			</mat-list-item>
 		</mat-list>

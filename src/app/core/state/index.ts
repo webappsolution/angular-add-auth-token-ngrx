@@ -1,4 +1,8 @@
-import { ActionReducerMap, createFeatureSelector, createSelector } from "@ngrx/store";
+import {
+    ActionReducerMap,
+    createFeatureSelector,
+    createSelector
+} from "@ngrx/store";
 import { defaultBeer } from "../domain/beer.model";
 import * as fromAuth from "./auth/auth.reducer";
 import * as fromBeer from "./beer/beer.reducer";
@@ -59,6 +63,6 @@ export const selectCurrentBeer = createSelector(
     selectBeerEntities,
     selectCurrentBeerId,
     (beerEntities, beerId) => {
-        return beerId ? beerEntities[beerId] : defaultBeer;
+        return beerId ? beerEntities[ beerId ] : defaultBeer;
     }
 );

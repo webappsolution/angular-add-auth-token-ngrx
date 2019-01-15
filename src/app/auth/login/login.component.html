@@ -9,15 +9,32 @@
 			<form [formGroup]="loginForm">
 				<mat-card-content>
 					<mat-form-field>
-						<input formControlName="username" matInput placeholder="Username" type="text" name="username">
+						<input formControlName="username"
+						       matInput
+						       name="username"
+						       placeholder="Username"
+						       type="text">
 					</mat-form-field>
 					<mat-form-field>
-						<input formControlName="password" matInput placeholder="Password" type="password" name="password">
+						<input formControlName="password"
+						       matInput
+						       name="password"
+						       placeholder="Password"
+						       type="password">
 					</mat-form-field>
 				</mat-card-content>
 				<mat-card-actions>
-					<button type="button" mat-raised-button color="primary" [disabled]="loginForm.invalid || pending" (click)="onLogin($event)">Login</button>
-					<button type="button" mat-raised-button color="primary" (click)="onRegister($event)">Register</button>
+					<button (click)="onLogin($event)"
+					        [disabled]="loginForm.invalid || pending"
+					        color="primary"
+					        mat-raised-button
+					        type="button">Login
+					</button>
+					<button (click)="onRegister($event)"
+					        color="primary"
+					        mat-raised-button
+					        type="button">Register
+					</button>
 				</mat-card-actions>
 			</form>
 			<div *ngIf="error">{{ error }}</div>

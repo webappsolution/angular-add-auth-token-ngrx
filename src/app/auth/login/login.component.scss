@@ -1,5 +1,6 @@
 :host {
     height: 100%;
+
     .background {
         position: fixed;
         left: 0;
@@ -12,6 +13,7 @@
         height: 100%;
         overflow: hidden;
     }
+
     .container {
         position: fixed;
         left: 0;
@@ -19,17 +21,21 @@
         top: 0;
         bottom: 0;
         z-index: 100;
+
         .card-wrapper {
             margin: auto;
             display: flex;
             justify-content: center;
         }
     }
+
     mat-card {
         box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
+
         mat-card-header {
             margin-bottom: 10px;
         }
+
         mat-form-field {
             width: 100%;
         }

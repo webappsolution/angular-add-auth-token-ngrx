@@ -7,6 +7,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
+    "lint-fix": "ng lint angular-add-auth-token-ngrx --fix",
     "e2e": "ng e2e",
     "dev": "concurrently \"npm run server-auth\" \"npm run client\"",
     "dev-auth": "concurrently \"npm run server-auth\" \"npm run client\"",

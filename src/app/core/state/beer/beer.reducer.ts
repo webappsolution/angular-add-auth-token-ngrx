@@ -1,6 +1,13 @@
-import { createEntityAdapter, EntityAdapter, EntityState } from "@ngrx/entity";
-import { BeerActions, BeerActionTypes } from "./beer.action";
+import {
+    createEntityAdapter,
+    EntityAdapter,
+    EntityState
+} from "@ngrx/entity";
 import { Beer } from "../../domain/beer.model";
+import {
+    BeerActions,
+    BeerActionTypes
+} from "./beer.action";
 
 /**
  * Interface to the part of the Store containing BeerState
@@ -27,7 +34,7 @@ export const adapter: EntityAdapter<Beer> = createEntityAdapter<Beer>();
  */
 export const initialState: BeerState = adapter.getInitialState({
     // additional entity state properties
-    selectedBeerId: null,
+    selectedBeerId: null
 });
 
 export function beerReducer(state = initialState, action: BeerActions): BeerState {

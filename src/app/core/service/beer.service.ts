@@ -9,8 +9,7 @@ import {
 } from "rxjs";
 import {
     catchError,
-    map,
-    tap
+    map
 } from "rxjs/operators";
 import { Beer } from "../domain/beer.model";
 import { ApiEndpointService } from "./api-endpoint.service";

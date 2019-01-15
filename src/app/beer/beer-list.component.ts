@@ -29,5 +29,6 @@ export class BeerListComponent implements OnInit {
     /**
      * Initialize the component.
      */
-    public ngOnInit() {}
+    public ngOnInit() {
+    }
 }

@@ -19,4 +19,5 @@ const COMPONENTS: any = [
     exports: COMPONENTS,
     declarations: COMPONENTS
 })
-export class BeerModule {}
+export class BeerModule {
+}

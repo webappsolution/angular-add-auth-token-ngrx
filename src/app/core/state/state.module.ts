@@ -57,11 +57,12 @@ const MODULES = [
     StoreDevtoolsModule.instrument({
         name: "Blog Store DevTools",
         logOnly: environment.production
-    }),
+    })
 ];
 
 @NgModule({
     imports: MODULES,
     declarations: []
 })
-export class StateModule {}
+export class StateModule {
+}

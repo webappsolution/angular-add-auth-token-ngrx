@@ -14,37 +14,51 @@ export enum BeerActionTypes {
 
 export class GetBeers implements Action {
     readonly type = BeerActionTypes.GetBeers;
-    constructor() { }
+
+    constructor() {
+    }
 }
 
 export class GetBeersSuccess implements Action {
     readonly type = BeerActionTypes.GetBeersSuccess;
-    constructor(public payload: Beer[]) { }
+
+    constructor(public payload: Beer[]) {
+    }
 }
 
 export class GetBeersFault implements Action {
     readonly type = BeerActionTypes.GetBeersFault;
-    constructor(public errorMessage: string) { }
+
+    constructor(public errorMessage: string) {
+    }
 }
 
 export class Select implements Action {
     readonly type = BeerActionTypes.Select;
-    constructor(public payload: string) { }
+
+    constructor(public payload: string) {
+    }
 }
 
 export class Add implements Action {
     readonly type = BeerActionTypes.Add;
-    constructor(public payload: Beer) { }
+
+    constructor(public payload: Beer) {
+    }
 }
 
 export class Update implements Action {
     readonly type = BeerActionTypes.Update;
-    constructor(public payload: Beer) { }
+
+    constructor(public payload: Beer) {
+    }
 }
 
 export class Delete implements Action {
     readonly type = BeerActionTypes.Delete;
-    constructor(public payload: Beer) { }
+
+    constructor(public payload: Beer) {
+    }
 }
 
 export type BeerActions =

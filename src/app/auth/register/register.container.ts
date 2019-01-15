@@ -1,29 +1,26 @@
-import { Component, OnInit } from "@angular/core";
-import { select, Store } from "@ngrx/store";
+import {
+    Component,
+    OnInit
+} from "@angular/core";
+import {
+    select,
+    Store
+} from "@ngrx/store";
 import { Observable } from "rxjs";
 import { RegisterCredentials } from "../../core/domain/auth.model";
 import * as fromState from "../../core/state";
 import * as AuthActions from "../../core/state/auth/auth.action";
 
-/*
-<ehr-register
-        [errorMessage]="errorMessage$ | async"
-        [pending]="registerPending$ | async"
-        (register)="register($event)"
-    >
-    </ehr-register>
- */
-
 @Component({
     selector: "blog-register-container",
     template: `
-    <blog-register
-        [error]="error$ | async"
-        [pending]="pending$ | async"
-        (register)="register($event)"
-        (cancel)="cancel($event)"
-    >
-    </blog-register>
+		<blog-register
+				[error]="error$ | async"
+				[pending]="pending$ | async"
+				(register)="register($event)"
+				(cancel)="cancel($event)"
+		>
+		</blog-register>
     `
 })
 export class RegisterContainer implements OnInit {
@@ -40,7 +37,8 @@ export class RegisterContainer implements OnInit {
     /**
      * Constructor.
      */
-    public constructor(private store$: Store<any>) {}
+    public constructor(private store$: Store<any>) {
+    }
 
     /**
      * Initialize the component.

@@ -1,24 +1,22 @@
 import {
-    Component,
-    OnInit,
     ChangeDetectionStrategy,
-    Output,
+    Component,
     EventEmitter,
-    Input
+    Input,
+    OnInit,
+    Output
 } from "@angular/core";
 import {
     FormBuilder,
-    FormGroup,
-    Validators
+    FormGroup
 } from "@angular/forms";
 import { LoginCredentials } from "../../core/domain/auth.model";
 import * as FormUtil from "../../util/form.util";
-import * as ValidationUtil from "../../util/validation.util";
 
 @Component({
     selector: "blog-login",
     templateUrl: "./login.component.html",
-    styleUrls: ["./login.component.scss"],
+    styleUrls: [ "./login.component.scss" ],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent implements OnInit {
@@ -54,7 +52,8 @@ export class LoginComponent implements OnInit {
     /**
      * Constructor
      */
-    constructor(private formBuilder: FormBuilder) {}
+    constructor(private formBuilder: FormBuilder) {
+    }
 
     /**
      * Initializes the component by building the form.
@@ -65,19 +64,19 @@ export class LoginComponent implements OnInit {
         this.loginForm = new FormGroup(
             this.formBuilder.group({
                 username: [
-                    "",
+                    ""
                     // [
                     //     Validators.required,
                     //     Validators.email
                     // ]
                 ],
                 password: [
-                    "",
+                    ""
                     // [
                     //     Validators.required,
                     //     Validators.maxLength(ValidationUtil.VALIDATION_RULE.PASSWORD.MAX_LENGTH)
                     // ]
-                ],
+                ]
             }).controls,
             {
                 updateOn: "blur"
@@ -107,11 +106,11 @@ export class LoginComponent implements OnInit {
     }
 
     /**
-     * Handles the form submission and emits a login event with the user's credentials.
+     * Emits an event to route the user to the registration view.
      * @param event
      */
     public onRegister(event: any) {
-        console.log(`onRegister( )`);
+        console.log(`onRegister()`);
         this.register.emit();
     }
 }

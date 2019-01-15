@@ -1,8 +1,22 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
+import {
+    HttpEvent,
+    HttpHandler,
+    HttpInterceptor,
+    HttpRequest
+} from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { select, Store } from "@ngrx/store";
-import { Observable, of } from "rxjs";
-import { first, mergeMap } from "rxjs/operators";
+import {
+    select,
+    Store
+} from "@ngrx/store";
+import {
+    Observable,
+    of
+} from "rxjs";
+import {
+    first,
+    mergeMap
+} from "rxjs/operators";
 import { ApiEndpointService } from "../service/api-endpoint.service";
 import * as fromState from "../state";
 
@@ -11,7 +25,8 @@ export class AddTokenHeaderHttpRequestInterceptor implements HttpInterceptor {
     /**
      * Constructor.
      */
-    constructor(private store$: Store<any>) {}
+    constructor(private store$: Store<any>) {
+    }
 
     /**
      * Intercepts all HTTP requests and adds the JWT token to the request's header if the URL

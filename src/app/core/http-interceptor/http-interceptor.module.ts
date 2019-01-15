@@ -16,4 +16,5 @@ const PROVIDERS = [
     declarations: [],
     providers: PROVIDERS
 })
-export class HttpInterceptorModule {}
+export class HttpInterceptorModule {
+}

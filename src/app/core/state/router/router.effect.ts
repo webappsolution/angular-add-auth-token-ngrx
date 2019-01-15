@@ -1,12 +1,29 @@
 import { Location } from "@angular/common";
 import { Injectable } from "@angular/core";
-import { ActivatedRoute, NavigationExtras, Router } from "@angular/router";
-import { Actions, Effect, ofType } from "@ngrx/effects";
-import { Action, Store } from "@ngrx/store";
-import { Observable, of } from "rxjs";
-import { map, tap } from "rxjs/operators";
+import {
+    ActivatedRoute,
+    NavigationExtras,
+    Router
+} from "@angular/router";
+import {
+    Actions,
+    Effect,
+    ofType
+} from "@ngrx/effects";
+import {
+    Action,
+    Store
+} from "@ngrx/store";
+import { Observable } from "rxjs";
+import {
+    map,
+    tap
+} from "rxjs/operators";
 import * as RouterActions from "./router.action";
-import { Go, RouterActionTypes } from "./router.action";
+import {
+    Go,
+    RouterActionTypes
+} from "./router.action";
 
 @Injectable()
 export class RouterEffect {
@@ -19,7 +36,7 @@ export class RouterEffect {
         map((action) => action.payload),
         tap((data) => {
             const extras: NavigationExtras = { ...data.extras };
-            this.router.navigate([data.path], extras);
+            this.router.navigate([ data.path ], extras);
         })
     );
 
@@ -50,5 +67,6 @@ export class RouterEffect {
         private router: Router,
         private location: Location,
         private route: ActivatedRoute
-    ) {}
+    ) {
+    }
 }

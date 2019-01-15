@@ -22,47 +22,65 @@ export enum AuthActionTypes {
 
 export class Login implements Action {
     readonly type = AuthActionTypes.Login;
-    constructor(public payload: LoginCredentials) { }
+
+    constructor(public payload: LoginCredentials) {
+    }
 }
 
 export class LoginSuccess implements Action {
     readonly type = AuthActionTypes.LoginSuccess;
-    constructor(public payload: Auth) { }
+
+    constructor(public payload: Auth) {
+    }
 }
 
 export class LoginFault implements Action {
     readonly type = AuthActionTypes.LoginFault;
-    constructor(public payload: string) { }
+
+    constructor(public payload: string) {
+    }
 }
 
 export class Register implements Action {
     readonly type = AuthActionTypes.Register;
-    constructor(public payload: RegisterCredentials) { }
+
+    constructor(public payload: RegisterCredentials) {
+    }
 }
 
 export class RegisterSuccess implements Action {
     readonly type = AuthActionTypes.RegisterSuccess;
-    constructor(public payload: Auth) { }
+
+    constructor(public payload: Auth) {
+    }
 }
 
 export class RegisterFault implements Action {
     readonly type = AuthActionTypes.RegisterFault;
-    constructor(public payload: string) { }
+
+    constructor(public payload: string) {
+    }
 }
 
 export class NavigateToLogin implements Action {
     readonly type = AuthActionTypes.NavigateToLogin;
-    constructor() { }
+
+    constructor() {
+    }
 }
 
 export class NavigateToRegister implements Action {
     readonly type = AuthActionTypes.NavigateToRegister;
-    constructor() { }
+
+    constructor() {
+    }
 }
 
 export class ResetAuthError implements Action {
     readonly type = AuthActionTypes.ResetAuthError;
-    constructor() { }
+
+    constructor() {
+    }
 }
 
 export type AuthActions =

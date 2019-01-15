@@ -1,9 +1,24 @@
 import { HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Actions, Effect, ofType } from "@ngrx/effects";
-import { Action, Store } from "@ngrx/store";
-import { Observable, of } from "rxjs";
-import { catchError, exhaustMap, map } from "rxjs/operators";
+import {
+    Actions,
+    Effect,
+    ofType
+} from "@ngrx/effects";
+import {
+    Action,
+    Store
+} from "@ngrx/store";
+import {
+    Observable,
+    of
+} from "rxjs";
+import {
+    catchError,
+    exhaustMap,
+    map
+} from "rxjs/operators";
+import { Beer } from "../../domain/beer.model";
 import { BeerService } from "../../service/beer.service";
 import {
     BeerActionTypes,
@@ -11,7 +26,6 @@ import {
     GetBeersFault,
     GetBeersSuccess
 } from "./beer.action";
-import { Beer } from "../../domain/beer.model";
 
 @Injectable()
 export class BeerEffect {
@@ -32,5 +46,6 @@ export class BeerEffect {
     /**
      * Constructor
      */
-    constructor(private actions$: Actions, private store$: Store<any>, private beerService: BeerService) {}
+    constructor(private actions$: Actions, private store$: Store<any>, private beerService: BeerService) {
+    }
 }

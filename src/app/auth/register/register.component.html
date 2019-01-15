@@ -9,21 +9,46 @@
 			<form [formGroup]="registerForm">
 				<mat-card-content>
 					<mat-form-field>
-						<input formControlName="firstName" matInput placeholder="First Name" type="text" name="firstName">
+						<input formControlName="firstName"
+						       matInput
+						       name="firstName"
+						       placeholder="First Name"
+						       type="text">
 					</mat-form-field>
 					<mat-form-field>
-						<input formControlName="lastName" matInput placeholder="Last Name" type="text" name="lastName">
+						<input formControlName="lastName"
+						       matInput
+						       name="lastName"
+						       placeholder="Last Name"
+						       type="text">
 					</mat-form-field>
 					<mat-form-field>
-						<input formControlName="username" matInput placeholder="Username" type="text" name="username">
+						<input formControlName="username"
+						       matInput
+						       name="username"
+						       placeholder="Username"
+						       type="text">
 					</mat-form-field>
 					<mat-form-field>
-						<input formControlName="password" matInput placeholder="Password" type="password" name="password">
+						<input formControlName="password"
+						       matInput
+						       name="password"
+						       placeholder="Password"
+						       type="password">
 					</mat-form-field>
 				</mat-card-content>
 				<mat-card-actions>
-					<button type="button" mat-raised-button color="primary" [disabled]="registerForm.invalid || pending" (click)="onRegister($event)">Register</button>
-					<button type="button" mat-raised-button color="primary" (click)="onCancel($event)">Cancel</button>
+					<button (click)="onRegister($event)"
+					        [disabled]="registerForm.invalid || pending"
+					        color="primary"
+					        mat-raised-button
+					        type="button">Register
+					</button>
+					<button (click)="onCancel($event)"
+					        color="primary"
+					        mat-raised-button
+					        type="button">Cancel
+					</button>
 				</mat-card-actions>
 			</form>
 			<div *ngIf="error">{{ error }}</div>

@@ -10,4 +10,5 @@ const PROVIDERS = [
 @NgModule({
     providers: PROVIDERS
 })
-export class ServiceModule {}
+export class ServiceModule {
+}

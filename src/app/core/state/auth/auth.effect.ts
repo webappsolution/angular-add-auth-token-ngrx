@@ -1,8 +1,18 @@
 import { HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Actions, Effect, ofType } from "@ngrx/effects";
-import { Action, Store } from "@ngrx/store";
-import { Observable, of } from "rxjs";
+import {
+    Actions,
+    Effect,
+    ofType
+} from "@ngrx/effects";
+import {
+    Action,
+    Store
+} from "@ngrx/store";
+import {
+    Observable,
+    of
+} from "rxjs";
 import {
     catchError,
     exhaustMap,
@@ -10,15 +20,15 @@ import {
     mergeMap
 } from "rxjs/operators";
 import { appRoutePaths } from "../../../app.routes";
-import { AuthService } from "../../service/auth.service";
-import { AuthActionTypes } from "./auth.action";
 import {
     Auth,
     LoginCredentials,
     RegisterCredentials
 } from "../../domain/auth.model";
-import * as AuthActions from "./auth.action";
+import { AuthService } from "../../service/auth.service";
 import * as RouterActions from "../router/router.action";
+import * as AuthActions from "./auth.action";
+import { AuthActionTypes } from "./auth.action";
 
 @Injectable()
 export class AuthEffect {
@@ -89,5 +99,6 @@ export class AuthEffect {
     /**
      * Constructor
      */
-    constructor(private actions$: Actions, private store$: Store<any>, private authService: AuthService) {}
+    constructor(private actions$: Actions, private store$: Store<any>, private authService: AuthService) {
+    }
 }

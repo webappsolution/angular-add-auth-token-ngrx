@@ -1,5 +1,8 @@
-import { AuthActions, AuthActionTypes } from "./auth.action";
 import { Auth } from "../../domain/auth.model";
+import {
+    AuthActions,
+    AuthActionTypes
+} from "./auth.action";
 
 export interface AuthState {
     token: string | null;
@@ -10,14 +13,14 @@ export interface AuthState {
 export const initialState: AuthState = {
     token: "",
     pending: false,
-    error: "",
+    error: ""
 };
 
 function initAuth(state: AuthState = initialState): AuthState {
     return {
         ...state,
         pending: true,
-        error: "",
+        error: ""
     };
 }
 
@@ -26,7 +29,7 @@ function authSuccess(state: AuthState = initialState, data: Auth): AuthState {
         ...state,
         token: data.token,
         pending: false,
-        error: "",
+        error: ""
     };
 }
 
@@ -35,14 +38,14 @@ function authFailed(state: AuthState = initialState, data: string): AuthState {
         ...state,
         token: "",
         pending: false,
-        error: data,
+        error: data
     };
 }
 
 function resetAuthError(state: AuthState = initialState): AuthState {
     return {
         ...state,
-        error: "",
+        error: ""
     };
 }
 

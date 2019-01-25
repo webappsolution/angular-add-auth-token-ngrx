@@ -73,5 +73,6 @@ export function authReducer(state: AuthState = initialState, action: AuthActions
 }
 
 export const getToken = (state: AuthState) => state.token;
+export const getIsLoggedIn = (state: AuthState) => !!state.token;
 export const getError = (state: AuthState) => state.error;
 export const getPending = (state: AuthState) => state.pending;

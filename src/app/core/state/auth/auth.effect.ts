@@ -83,7 +83,7 @@ export class AuthEffect {
     );
 
     /**
-     * Routes the user to the login flow.
+     * Routes the user to the registration flow.
      */
     @Effect()
     navigateToRegister$: Observable<Action> = this.actions$.pipe(

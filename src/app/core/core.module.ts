@@ -5,12 +5,14 @@ import {
     SkipSelf
 } from "@angular/core";
 import { HttpInterceptorModule } from "./http-interceptor/http-interceptor.module";
+import { RouteGuardModule } from "./route-guard/route-guard.module";
 import { ServiceModule } from "./service/service.module";
 import { StateModule } from "./state/state.module";
 
 const MODULES = [
     HttpClientModule,
     HttpInterceptorModule,
+    RouteGuardModule,
     ServiceModule,
     StateModule
 ];

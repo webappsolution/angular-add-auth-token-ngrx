@@ -8,9 +8,22 @@ This project demonstrates how to add authentication tokens to all of HTTP reques
 
 ## Getting Started
 
+Let’s clone the repo and fire up the app so we can see it in action. Open up a terminal and enter the following commands: 
+
 ```
-npm install
-npm run dev
+wasi$ git clone https://github.com/webappsolution/angular-add-auth-token-ngrx.git
+wasi$ git checkout feature/step-2-auth-routing-guard
+wasi$ npm i
+wasi$ npm run dev-auth
+```
+
+The last command will concurrently start both the server and client — the server uses json-server to quickly scaffold an in-memory JSON database, while the client is the Angular app running via Angular CLI. 
+
+Developers can also choose to run the client and sever in 2 separate terminals in case you like reading the console a bit easier:
+
+```
+wasi$ npm run client
+wasi$ npm run server-auth
 ```
 
 Navigate to `http://localhost:4300/`. The app will automatically reload if you change any of the source files.

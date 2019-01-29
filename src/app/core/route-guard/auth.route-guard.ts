@@ -22,9 +22,11 @@ export class AuthRouteGuard implements CanActivate {
             map((authed) => {
                 if (!authed) {
                     this.store$.dispatch(new AuthActions.NavigateToLogin());
+                    console.log(`canActivate( No. Redirect the user back to login. )`);
                     return false;
                 }
 
+                console.log(`canActivate( Yes. Navigate the user to the requested route. )`);
                 return true;
             }),
             first()

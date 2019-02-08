@@ -1,0 +1,35 @@
+{
+  "name": "angular-add-auth-token-ngrx",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "lint-fix": "ng lint angular-add-auth-token-ngrx --fix",
+    "dev": "concurrently \"npm run server-auth\" \"npm run client\"",
+    "dev-auth": "concurrently \"npm run server-auth\" \"npm run client\"",
+    "server": "json-server ./db.json --port 4301 --watch",
+    "server-auth": "nodemon ./ --inspect"
+  },
+  "private": true,
+  "dependencies": {
+    "core-js": "^2.5.4",
+    "hammerjs": "^2.0.8",
+    "http-status": "^1.3.1",
+    "json-server": "^0.14.0",
+    "jsonwebtoken": "^8.4.0",
+    "rxjs": "~6.3.3",
+    "tslib": "^1.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "~8.9.4",
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.18.9",
+    "prettier": "^1.15.3",
+    "ts-node": "~7.0.0",
+    "tslint": "~5.11.0",
+    "typescript": "~3.1.6"
+  }
+}

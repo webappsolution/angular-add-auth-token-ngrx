@@ -12,7 +12,7 @@ const config = require("./config.json");
 // Create the json-server and provide it our database file so it can create
 // API routes to access our in-memory data.
 const server = jsonServer.create();
-const router = jsonServer.router("./server/database/mock/db.json");
+const router = jsonServer.router("./database/mock/db.json");
 
 // Setup express request body parsing.
 server.use(bodyParser.urlencoded({extended: true}));

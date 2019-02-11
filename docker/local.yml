@@ -1,0 +1,15 @@
+# Docker compose version
+version: "3.7"
+
+# Define the services to be run
+services:
+
+  client: # name of the first service
+    image: brianmriley/angular-app-blog # specify the directory of the Dockerfile
+    ports:
+      - "4300:80" # specify port mapping
+
+  server: # name of the second service
+    image: brianmriley/node-app-blog # specify the directory of the Dockerfile
+    ports:
+      - "4301:4301" #specify ports mapping

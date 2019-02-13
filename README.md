@@ -4,40 +4,58 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Overview
 
-This project demonstrates how to add authentication tokens to all of HTTP requests when the token is stored in an NGRX store.
+This project demonstrates the following:
+ 
+* NGRX project structure.
+* JWT based authentication with NodeJs back-end.
+* Using NGRX store selectors in an HTTP request interceptor to automatically add the auth token to request headers.
+* Using secure, protected NodeJs API endpoints that require a valid JWT.
+* Protected Angular routes using Route Guards that determine if the user is authenticated via NGRX selectors.
+* Running the application locally in a Docker stack. 
+
+
+ how to add authentication tokens to all of HTTP requests when the token is stored in an NGRX store.
 
 ## Getting Started
 
-Let’s clone the repo and fire up the app so we can see it in action. Open up a terminal and enter the following commands: 
+Let’s clone the repo and fire up the app so we can see it in action. 
+
+### Without Docker
+
+Open up 2 terminals: 
+
+**Terminal 1**
 
 ```
 wasi$ git clone https://github.com/webappsolution/angular-add-auth-token-ngrx.git
-wasi$ git checkout feature/step-2-auth-routing-guard
+wasi$ git checkout feature/step-3-dockerize
+wasi$ cd client
 wasi$ npm i
-wasi$ npm run dev-auth
+wasi$ npm run dev
 ```
 
-The last command will concurrently start both the server and client — the server uses json-server to quickly scaffold an in-memory JSON database, while the client is the Angular app running via Angular CLI. 
-
-Developers can also choose to run the client and sever in 2 separate terminals in case you like reading the console a bit easier:
+**Terminal 2**
 
 ```
-wasi$ npm run client
+wasi$ cd server
+wasi$ npm i
 wasi$ npm run server-auth
 ```
 
 Navigate to `http://localhost:4300/`. The app will automatically reload if you change any of the source files.
 
-## Development server
+### WIP: With Docker
 
-You can also run the client and back-end servers individually.
+**NOTE**: This assumes you have Docker installed locally.
 
-* Run `npm run client` for a client dev server. 
-    * `http://localhost:4300/`
-* Run `npm run server` for a backend in-memory JSON database.
-    * `http://localhost:4301/`
-* Run `npm run dev` to start both the client and server concurrently.
+Open up a terminal and enter the following commands: 
 
+```
+wasi$ git clone https://github.com/webappsolution/angular-add-auth-token-ngrx.git
+wasi$ git checkout feature/step-3-dockerize
+wasi$ cd docker
+wasi$ docker stack deploy -c ./local.yml blog
+```
 
 ## Code scaffolding
 

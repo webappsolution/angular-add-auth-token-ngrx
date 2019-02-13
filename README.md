@@ -13,22 +13,22 @@ This project demonstrates the following:
 * Protected Angular routes using Route Guards that determine if the user is authenticated via NGRX selectors.
 * Running the application locally in a Docker stack. 
 
-
- how to add authentication tokens to all of HTTP requests when the token is stored in an NGRX store.
-
 ## Getting Started
 
-Let’s clone the repo and fire up the app so we can see it in action. 
-
-### Without Docker
-
-Open up 2 terminals: 
-
-**Terminal 1**
+Let’s clone the repo and fire up the app so we can see it in action:
 
 ```
 wasi$ git clone https://github.com/webappsolution/angular-add-auth-token-ngrx.git
 wasi$ git checkout feature/step-3-dockerize
+```
+
+### Without Docker
+
+Open up 2 terminals (or 1 new one and use the one we used for Git checkout): 
+
+**Terminal 1**
+
+```
 wasi$ cd client
 wasi$ npm i
 wasi$ npm run dev

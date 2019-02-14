@@ -44,6 +44,28 @@ wasi$ npm run server-auth
 
 Navigate to `http://localhost:4300/`. The app will automatically reload if you change any of the source files.
 
+### Login or Register
+
+You can login with the following credentials or click the "Register" button and create your own user that's persisted for the 
+current session:
+
+**User 1**
+
+* username: `tom.brady@patriots.com`
+* password: `goat`
+
+**User 2**
+
+* username: `test@test.com`
+* password: `test`
+
+**User 3**
+
+* username: `admin@admin.com`
+* password: `admin`
+
+**NOTE**: Additional users can be added to `server/database/mock/users.json`.
+
 ### WIP: With Docker
 
 **NOTE**: This assumes you have Docker installed locally.

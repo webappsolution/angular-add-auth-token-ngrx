@@ -79,7 +79,9 @@ wasi$ cd docker
 wasi$ docker-compose build && docker-compose up -d
 ```
 
-If you know how to build docker images you can also edit and use the Docker stack YAML file to run the app locally: 
+Navigate to `http://localhost:4300/` to run the app in the browser.
+
+**NOTE**: If you know how to build docker images you can also edit and use the Docker stack YAML file to run the app locally: 
 `docker stack deploy -c ./local.yml blog`
 
 ## Code scaffolding

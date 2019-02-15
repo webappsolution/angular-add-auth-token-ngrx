@@ -66,9 +66,9 @@ current session:
 
 **NOTE**: Additional users can be added to `server/database/mock/users.json`.
 
-### WIP: With Docker
+### With Docker
 
-**NOTE**: This assumes you have Docker installed locally.
+**NOTE**: This assumes you have [Docker installed and running locally](https://www.docker.com/products/docker-desktop).
 
 Open up a terminal and enter the following commands: 
 
@@ -76,8 +76,11 @@ Open up a terminal and enter the following commands:
 wasi$ git clone https://github.com/webappsolution/angular-add-auth-token-ngrx.git
 wasi$ git checkout feature/step-3-dockerize
 wasi$ cd docker
-wasi$ docker stack deploy -c ./local.yml blog
+wasi$ docker-compose build && docker-compose up -d
 ```
+
+If you know how to build docker images you can also edit and use the Docker stack YAML file to run the app locally: 
+`docker stack deploy -c ./local.yml blog`
 
 ## Code scaffolding
 

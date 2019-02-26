@@ -1,3 +1,9 @@
+#############################################################################
+# Docker Compose
+#
+# Use this file when running the stack on a legit server.
+#############################################################################
+
 # Docker compose version
 version: "3.7"
 

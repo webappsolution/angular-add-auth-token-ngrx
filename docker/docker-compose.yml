@@ -1,3 +1,9 @@
+#############################################################################
+# Docker Compose
+#
+# Use this file when running the app locally for development.
+#############################################################################
+
 # Docker compose version
 version: "3.7"
 
